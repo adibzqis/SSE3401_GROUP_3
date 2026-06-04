@@ -1,0 +1,54 @@
+# ninja log v7
+47	9051	1780484059751368077	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/libflutter_linux_gtk.so	404d61a2a5c1801e
+47	9051	1780484059751368077	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_basic_message_channel.h	404d61a2a5c1801e
+47	9051	1780484059751368077	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_binary_codec.h	404d61a2a5c1801e
+47	9051	1780484059751368077	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_binary_messenger.h	404d61a2a5c1801e
+47	9051	1780484059751368077	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_dart_project.h	404d61a2a5c1801e
+47	9051	1780484059751368077	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_engine.h	404d61a2a5c1801e
+47	9051	1780484059751368077	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_json_message_codec.h	404d61a2a5c1801e
+47	9051	1780484059751368077	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_json_method_codec.h	404d61a2a5c1801e
+47	9051	1780484059751368077	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_message_codec.h	404d61a2a5c1801e
+47	9051	1780484059751368077	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_method_call.h	404d61a2a5c1801e
+47	9051	1780484059751368077	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_method_channel.h	404d61a2a5c1801e
+47	9051	1780484059751368077	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_method_codec.h	404d61a2a5c1801e
+47	9051	1780484059751368077	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_method_response.h	404d61a2a5c1801e
+47	9051	1780484059751368077	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_plugin_registrar.h	404d61a2a5c1801e
+47	9051	1780484059751368077	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_plugin_registry.h	404d61a2a5c1801e
+47	9051	1780484059751368077	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_standard_message_codec.h	404d61a2a5c1801e
+47	9051	1780484059751368077	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_standard_method_codec.h	404d61a2a5c1801e
+47	9051	1780484059751368077	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_string_codec.h	404d61a2a5c1801e
+47	9051	1780484059751368077	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_value.h	404d61a2a5c1801e
+47	9051	1780484059751368077	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_view.h	404d61a2a5c1801e
+47	9051	1780484059751368077	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/flutter_linux.h	404d61a2a5c1801e
+47	9051	1780484059751368077	flutter/_phony_	404d61a2a5c1801e
+47	9051	1780484059751368077	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/build/linux/x64/debug/flutter/_phony_	404d61a2a5c1801e
+24031	25624	1780434433627678225	runner/CMakeFiles/section_8_plus.dir/__/flutter/generated_plugin_registrant.cc.o	b3b56509e5e87478
+24023	25640	1780434433621678247	runner/CMakeFiles/section_8_plus.dir/main.cc.o	4c5a9925566426a0
+24028	25700	1780434433624678236	runner/CMakeFiles/section_8_plus.dir/my_application.cc.o	cc21ed99173b3192
+9054	9569	1780484068758345689	intermediates_do_not_run/section_8_plus	b4bdd48f08947f90
+9572	9654	1780484069276344401	CMakeFiles/install.util	8976e1b6c7f52db2
+96	7931	1780491882679837731	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/libflutter_linux_gtk.so	404d61a2a5c1801e
+96	7931	1780491882679837731	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_basic_message_channel.h	404d61a2a5c1801e
+96	7931	1780491882679837731	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_binary_codec.h	404d61a2a5c1801e
+96	7931	1780491882679837731	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_binary_messenger.h	404d61a2a5c1801e
+96	7931	1780491882679837731	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_dart_project.h	404d61a2a5c1801e
+96	7931	1780491882679837731	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_engine.h	404d61a2a5c1801e
+96	7931	1780491882679837731	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_json_message_codec.h	404d61a2a5c1801e
+96	7931	1780491882679837731	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_json_method_codec.h	404d61a2a5c1801e
+96	7931	1780491882679837731	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_message_codec.h	404d61a2a5c1801e
+96	7931	1780491882679837731	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_method_call.h	404d61a2a5c1801e
+96	7931	1780491882679837731	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_method_channel.h	404d61a2a5c1801e
+96	7931	1780491882679837731	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_method_codec.h	404d61a2a5c1801e
+96	7931	1780491882679837731	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_method_response.h	404d61a2a5c1801e
+96	7931	1780491882679837731	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_plugin_registrar.h	404d61a2a5c1801e
+96	7931	1780491882679837731	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_plugin_registry.h	404d61a2a5c1801e
+96	7931	1780491882679837731	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_standard_message_codec.h	404d61a2a5c1801e
+96	7931	1780491882679837731	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_standard_method_codec.h	404d61a2a5c1801e
+96	7931	1780491882679837731	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_string_codec.h	404d61a2a5c1801e
+96	7931	1780491882679837731	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_value.h	404d61a2a5c1801e
+96	7931	1780491882679837731	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/fl_view.h	404d61a2a5c1801e
+96	7931	1780491882679837731	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/linux/flutter/ephemeral/flutter_linux/flutter_linux.h	404d61a2a5c1801e
+96	7931	1780491882679837731	flutter/_phony_	404d61a2a5c1801e
+96	7931	1780491882679837731	/home/Ashe/Ashman/Projects/Flutter/Section 8+ Udemy/section_8_plus/build/linux/x64/debug/flutter/_phony_	404d61a2a5c1801e
+7932	8372	1780491890516986043	intermediates_do_not_run/section_8_plus	b4bdd48f08947f90
+8373	8431	1780491890956803952	CMakeFiles/install.util	8976e1b6c7f52db2
