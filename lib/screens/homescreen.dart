@@ -113,24 +113,24 @@ class _HomescreenState extends State<Homescreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           _buildDashboardItem(
-                            icon: Icons.school,
-                            title: "Courses",
+                            icon: Icons.business,
+                            title: "Block A",
                             onTap: () {
-                              print("Courses tapped");
+                              print("Block A tapped");
                             },
                           ),
                           _buildDashboardItem(
-                            icon: Icons.calendar_today,
-                            title: "Schedule",
+                            icon: Icons.business,
+                            title: "Block B",
                             onTap: () {
-                              print("Schedule tapped");
+                              print("Block B tapped");
                             },
                           ),
                           _buildDashboardItem(
-                            icon: Icons.assignment,
-                            title: "Assignments",
+                            icon: Icons.business,
+                            title: "Block C",
                             onTap: () {
-                              print("Assignments tapped");
+                              print("Block C tapped");
                             },
                           ),
                         ],
@@ -178,7 +178,7 @@ class _HomescreenState extends State<Homescreen> {
                           ),
                           const SizedBox(height: 30),
                           Text(
-                            "Browse courses • Manage schedule • Track assignments",
+                            "Bla Bla",
                             style: TextStyle(
                               fontSize: 13,
                               color: Colors.grey[700],
@@ -187,7 +187,7 @@ class _HomescreenState extends State<Homescreen> {
                           ),
                           const SizedBox(height:30),
                           Text(
-                            "Explore all available courses, organize your timetable, and keep track of your pending tasks and deadlines in one place.",
+                            "Bla Bla Bla",
                             style: TextStyle(
                               fontSize: 12,
                               color: Colors.grey[600],
