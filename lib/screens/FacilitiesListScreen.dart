@@ -27,7 +27,11 @@ class FacilitiesListScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const RoomDetailsScreen(),
+                  builder: (context) => RoomDetailsScreen(
+                    roomName: 'Room A10${index + 1}',
+                    blockName: 'Block A',
+                    floorName: 'Level 1',
+                  ),
                 ),
               );
             },

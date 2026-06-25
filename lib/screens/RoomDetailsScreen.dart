@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
 
 class RoomDetailsScreen extends StatelessWidget {
-  const RoomDetailsScreen({super.key});
+  final String roomName;
+  final String blockName;
+  final String floorName;
+
+  const RoomDetailsScreen({
+    super.key,
+    required this.roomName,
+    required this.blockName,
+    required this.floorName,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFE8F8EC),
       appBar: AppBar(
-        title: const Text('Block A', style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold)),
+        title: Text(blockName, style: const TextStyle(color: Colors.black87, fontWeight: FontWeight.bold)),
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black87),
@@ -20,7 +29,7 @@ class RoomDetailsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('A101 - Lab 1', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black87)),
+              Text('$roomName - Lab ${roomName.substring(roomName.length - 1)}', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black87)),
               const SizedBox(height: 16),
               
               // Room Picture Placeholder
@@ -63,8 +72,8 @@ class RoomDetailsScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildDetailRow('Type', 'Computer Laboratory'),
-                    _buildDetailRow('Floor', '1st Floor'),
-                    _buildDetailRow('Block', 'Block A'),
+                    _buildDetailRow('Floor', floorName),
+                    _buildDetailRow('Block', blockName),
                     _buildDetailRow('Desc', 'Main lab for software engineering courses.'),
                     _buildDetailRow('Fun Fact', 'This was the first lab built on campus!'),
                     const SizedBox(height: 16),
