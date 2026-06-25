@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/bottom_nav_bar.dart';
+import 'floor_selection_screen.dart';
+
 
 
 
@@ -116,21 +118,32 @@ class _HomescreenState extends State<Homescreen> {
                             icon: Icons.business,
                             title: "Block A",
                             onTap: () {
-                              print("Block A tapped");
+                              _openFloorSelection(context, 'Block A', [
+                                'Ground Floor',
+                                'Level 1',
+                                'Level 2',
+                              ]);
                             },
                           ),
                           _buildDashboardItem(
                             icon: Icons.business,
                             title: "Block B",
                             onTap: () {
-                              print("Block B tapped");
+                              _openFloorSelection(context, 'Block B', [
+                                'Level 1',
+                                'Level 2',
+                                'Level 3',
+                              ]);
                             },
                           ),
                           _buildDashboardItem(
                             icon: Icons.business,
                             title: "Block C",
                             onTap: () {
-                              print("Block C tapped");
+                              _openFloorSelection(context, 'Block C', [
+                                'Level 1',
+                                'Level 2',
+                              ]);
                             },
                           ),
                         ],
@@ -213,6 +226,18 @@ class _HomescreenState extends State<Homescreen> {
           ]),
         ),
       ],
+    );
+  }
+
+  void _openFloorSelection(BuildContext context, String blockName, List<String> floors) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => FloorSelectionScreen(
+          blockName: blockName,
+          floors: floors,
+        ),
+      ),
     );
   }
 
