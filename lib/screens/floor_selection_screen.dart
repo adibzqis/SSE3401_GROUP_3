@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'RoomDetailsScreen.dart';
 
 class FloorSelectionScreen extends StatelessWidget {
   final String blockName;
@@ -59,9 +60,14 @@ class FloorSelectionScreen extends StatelessWidget {
                       subtitle: Text('Tap to open $blockName $floor'),
                       trailing: const Icon(Icons.arrow_forward_ios),
                       onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Opened $blockName $floor'),
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RoomDetailsScreen(
+                              roomName: '${blockName.replaceAll('Block ', '')}${index + 101}',
+                              blockName: blockName,
+                              floorName: floor,
+                            ),
                           ),
                         );
                       },
