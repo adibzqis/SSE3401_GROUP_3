@@ -87,7 +87,7 @@ class RoomDetailsScreen extends StatelessWidget {
                         _buildFacilityIcon(Icons.wifi, 'Wi-Fi'),
                         _buildFacilityIcon(Icons.computer, 'PCs'),
                         _buildFacilityIcon(Icons.ac_unit, 'AC'),
-                        _buildFacilityIcon(Icons.projector, 'Projector'),
+                        _buildFacilityIcon(Icons.camera_alt_rounded, 'Projector'),
                       ],
                     ),
                   ],
