@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/bottom_nav_bar.dart';
 
-
-
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
 
@@ -67,7 +65,7 @@ class _HomescreenState extends State<Homescreen> {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.4),
+                      color: Colors.black.withValues(alpha: 0.4),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
@@ -157,7 +155,7 @@ class _HomescreenState extends State<Homescreen> {
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
+                        color: Colors.black.withValues(alpha: 0.1),
                         blurRadius: 4,
                         offset: const Offset(0, 2),
                       ),
@@ -227,7 +225,7 @@ class _HomescreenState extends State<Homescreen> {
         width: 90,
         height: 90,
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.4),
+          color: Colors.white.withValues(alpha: 0.4),
           borderRadius: BorderRadius.circular(15),
         ),
         child: Column(
@@ -237,7 +235,7 @@ class _HomescreenState extends State<Homescreen> {
               icon,
               shadows: [
                 Shadow(
-                  color: const Color.fromARGB(255, 134, 203, 65).withOpacity(0.3),
+                  color: const Color.fromARGB(255, 134, 203, 65).withValues(alpha: 0.3),
                   offset: Offset(2, 2),
                   blurRadius: 3,
                 ),
