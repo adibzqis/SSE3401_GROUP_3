@@ -7,7 +7,7 @@ class FacilitiesListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE8F8EC),
+      backgroundColor: const Color.fromARGB(255, 232, 248, 236),
       appBar: AppBar(
         title: const Text(
           'Facilities',
@@ -20,14 +20,18 @@ class FacilitiesListScreen extends StatelessWidget {
       ),
       body: ListView.builder(
         padding: const EdgeInsets.all(16.0),
-        itemCount: 5, // Example count
+        itemCount: 5,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const RoomDetailsScreen(),
+                  builder: (context) => RoomDetailsScreen(
+                    roomName: 'Room A10${index + 1}',
+                    blockName: 'Block A',
+                    floorName: 'Level 1',
+                  ),
                 ),
               );
             },
@@ -39,7 +43,7 @@ class FacilitiesListScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
+                    color: Colors.black.withValues(alpha: 0.05),
                     blurRadius: 10,
                     offset: const Offset(0, 4),
                   ),
@@ -51,12 +55,12 @@ class FacilitiesListScreen extends StatelessWidget {
                     width: 50,
                     height: 50,
                     decoration: BoxDecoration(
-                      color: const Color(0xFFE8F8EC),
+                      color: const Color.fromARGB(255, 232, 248, 236),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: const Icon(
                       Icons.meeting_room,
-                      color: Color(0xFF22C55E),
+                      color: Color.fromARGB(255, 66, 192, 70),
                     ),
                   ),
                   const SizedBox(width: 16),

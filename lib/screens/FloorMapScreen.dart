@@ -7,7 +7,7 @@ class FloorMapScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE8F8EC),
+      backgroundColor: const Color.fromARGB(255, 232, 248, 236),
       appBar: AppBar(
         title: const Text(
           'Block A',
@@ -28,7 +28,6 @@ class FloorMapScreen extends StatelessWidget {
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
-            // Map Placeholder Card
             Expanded(
               child: Container(
                 width: double.infinity,
@@ -37,7 +36,7 @@ class FloorMapScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(24),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
+                      color: Colors.black.withValues(alpha: 0.05),
                       blurRadius: 10,
                       offset: const Offset(0, 4),
                     ),
@@ -53,7 +52,6 @@ class FloorMapScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
-            // View Rooms Button
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -66,7 +64,7 @@ class FloorMapScreen extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF22C55E),
+                  backgroundColor: const Color.fromARGB(255, 66, 192, 70),
                   padding: const EdgeInsets.symmetric(vertical: 18),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),

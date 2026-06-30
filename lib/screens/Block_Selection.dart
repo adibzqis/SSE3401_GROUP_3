@@ -1,7 +1,5 @@
-
 import 'package:flutter/material.dart';
-
-
+import 'package:section_8_plus/screens/FacilitiesListScreen.dart';
 
 class BlockSelection extends StatefulWidget {
   const BlockSelection({super.key});
@@ -13,239 +11,102 @@ class BlockSelection extends StatefulWidget {
 class _BlockSelectionState extends State<BlockSelection> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          elevation: 1,
-          shadowColor: Color.fromARGB(255, 0, 0, 0),
-          backgroundColor: Color.fromARGB(255, 255, 255, 255),
-          leading: Icon(Icons.arrow_back),
-          title: Container(
-            alignment: AlignmentDirectional.topStart,
-            child: Text(
-              "Select Block",
-              textAlign: TextAlign.start,
-              style: TextStyle(fontWeight: FontWeight(900)),
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 1,
+        shadowColor: const Color.fromARGB(255, 0, 0, 0),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        leading: const Icon(Icons.arrow_back, color: Colors.black),
+        title: const Text(
+          "Select Block",
+          style: TextStyle(fontWeight: FontWeight.w900, color: Colors.black),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 10),
+              const Text(
+                "Choose a block to explore",
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+              ),
+              const SizedBox(height: 20),
+              _buildThemedBlockCard("Block A"),
+              _buildThemedBlockCard("Block B"),
+              _buildThemedBlockCard("Block C"),
+            ],
           ),
         ),
-        body: Stack(
-          clipBehavior: Clip.antiAlias,
+      ),
+    );
+  }
+
+  Widget _buildThemedBlockCard(String blockName) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const FacilitiesListScreen()),
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 20),
+        width: double.infinity,
+        height: 140,
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(255, 232, 248, 236), // Light green tint
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.1),
+              blurRadius: 4,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Stack(
           children: [
-            Container(
-              alignment: Alignment.center,
+            Positioned(
+              left: 20,
+              top: 25,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 10),
-                  Align(
-                    alignment: AlignmentGeometry.xy(-0.76, 1),
-                    child: Text(
-                      "Choose a block to explore",
-                      style: TextStyle(fontWeight: FontWeight(600)),
+                  Text(
+                    blockName,
+                    style: const TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.black87,
                     ),
                   ),
-
-                  Stack(//Block A
-                    alignment: AlignmentGeometry.center,
-                    children: [
-                      Container(
-                        width: 500,
-                        height: 200,
-                        child: Card.outlined(
-                          margin: EdgeInsets.all(15),
-                          elevation: 3,
-                          shadowColor: Color.fromARGB(255, 0, 0, 0),
-                          color: Color.fromARGB(255, 255, 224, 224),
-                          child: Column(
-                            children: [
-                              SizedBox(height: 48),
-                              Align(
-                                alignment: AlignmentGeometry.xy(-0.9, 1),
-                                child: Column(
-                                  mainAxisSize: .min,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Align(
-                                      alignment: AlignmentGeometry.xy(-0.9, 1),
-                                      child: Text(
-                                        "Block A",
-                                        style: TextStyle(
-                                          fontSize: 30,
-                                          fontWeight: FontWeight(650),
-                                        ),
-                                      ),
-                                    ),
-
-                                    Align(
-                                      alignment: AlignmentGeometry.xy(-0.87, 1),
-                                      child: Text(
-                                        "View Rooms, Floors, and \n Facilities",
-                                        textScaler: TextScaler.linear(1.2),
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight(500),
-                                        ),
-                                        textWidthBasis: TextWidthBasis.parent,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        top: 30,
-                        right: 30,
-                        child: Icon(Icons.next_plan, size:30)),
-
-                      Positioned(
-                        top: 105,
-                        right: 50,
-                        child: Icon(Icons.business_rounded,
-                        size: 70,
-                        color: Color.fromARGB(255, 237, 99, 99),
-                        ),
-                        )
-                    ],
-                  ),
-
-                  Stack(//Block B
-                    alignment: AlignmentGeometry.center,
-                    children: [
-                      Container(
-                        width: 500,
-                        height: 200,
-                        child: Card.outlined(
-                          margin: EdgeInsets.all(15),
-                          elevation: 3,
-                          shadowColor: Color.fromARGB(255, 0, 0, 0),
-                          color: Color.fromARGB(255, 223, 232, 255),
-                          child: Column(
-                            children: [
-                              SizedBox(height: 48),
-                              Align(
-                                alignment: AlignmentGeometry.xy(-0.9, 1),
-                                child: Column(
-                                  mainAxisSize: .min,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Align(
-                                      alignment: AlignmentGeometry.xy(-0.9, 1),
-                                      child: Text(
-                                        "Block B",
-                                        style: TextStyle(
-                                          fontSize: 30,
-                                          fontWeight: FontWeight(650),
-                                        ),
-                                      ),
-                                    ),
-
-                                    Align(
-                                      alignment: AlignmentGeometry.xy(-0.87, 1),
-                                      child: Text(
-                                        "View Rooms, Floors, and \n Facilities",
-                                        textScaler: TextScaler.linear(1.2),
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight(500),
-                                        ),
-                                        textWidthBasis: TextWidthBasis.parent,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        top: 30,
-                        right: 30,
-                        child: Icon(Icons.next_plan, size:30)),
-
-                      Positioned(
-                        top: 105,
-                        right: 50,
-                        child: Icon(Icons.business_rounded,
-                        size: 70,
-                        color: Color.fromARGB(255, 100, 139, 238),
-                        ),
-                        )
-                    ],
-                  ),
-
-                  Stack(//Block C
-                    alignment: AlignmentGeometry.center,
-                    children: [
-                      Container(
-                        width: 500,
-                        height: 200,
-                        child: Card.outlined(
-                          margin: EdgeInsets.all(15),
-                          elevation: 3,
-                          shadowColor: Color.fromARGB(255, 0, 0, 0),
-                          color: Color.fromARGB(224, 236, 255, 216),
-                          child: Column(
-                            children: [
-                              SizedBox(height: 48),
-                              Align(
-                                alignment: AlignmentGeometry.xy(-0.9, 1),
-                                child: Column(
-                                  mainAxisSize: .min,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Align(
-                                      alignment: AlignmentGeometry.xy(-0.9, 1),
-                                      child: Text(
-                                        "Block C",
-                                        style: TextStyle(
-                                          fontSize: 30,
-                                          fontWeight: FontWeight(650),
-                                        ),
-                                      ),
-                                    ),
-
-                                    Align(
-                                      alignment: AlignmentGeometry.xy(-0.87, 1),
-                                      child: Text(
-                                        "View Rooms, Floors, and \n Facilities",
-                                        textScaler: TextScaler.linear(1.2),
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight(500),
-                                        ),
-                                        textWidthBasis: TextWidthBasis.parent,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        top: 30,
-                        right: 30,
-                        child: Icon(Icons.next_plan, size:30)),
-
-                      Positioned(
-                        top: 105,
-                        right: 50,
-                        child: Icon(Icons.business_rounded,
-                        size: 70,
-                        color: Color.fromARGB(255, 174, 238, 105),
-                        ),
-                        )
-                    ],
+                  const SizedBox(height: 8),
+                  const Text(
+                    "View Rooms, Floors, and \nFacilities",
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black54,
+                    ),
                   ),
                 ],
+              ),
+            ),
+            const Positioned(
+              top: 20,
+              right: 20,
+              child: Icon(Icons.next_plan, size: 28, color: Colors.black54),
+            ),
+            const Positioned(
+              bottom: -10,
+              right: 30,
+              child: Icon(
+                Icons.business_rounded,
+                size: 90,
+                color: Color.fromARGB(50, 66, 192, 70), // Faded green background icon
               ),
             ),
           ],

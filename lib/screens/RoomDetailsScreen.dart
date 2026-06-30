@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
 
 class RoomDetailsScreen extends StatelessWidget {
-  const RoomDetailsScreen({super.key});
+  final String roomName;
+  final String blockName;
+  final String floorName;
+
+  const RoomDetailsScreen({
+    super.key,
+    required this.roomName,
+    required this.blockName,
+    required this.floorName,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE8F8EC),
+      backgroundColor: const Color.fromARGB(255, 232, 248, 236),
       appBar: AppBar(
-        title: const Text('Block A', style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold)),
+        title: Text(blockName, style: const TextStyle(color: Colors.black87, fontWeight: FontWeight.bold)),
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black87),
@@ -20,7 +29,7 @@ class RoomDetailsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('A101 - Lab 1', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black87)),
+              Text('$roomName - Lab ${roomName.substring(roomName.length - 1)}', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black87)),
               const SizedBox(height: 16),
               
               // Room Picture Placeholder
@@ -32,7 +41,7 @@ class RoomDetailsScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(24),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
+                      color: Colors.black.withValues(alpha: 0.05),
                       blurRadius: 10,
                       offset: const Offset(0, 4),
                     ),
@@ -53,7 +62,7 @@ class RoomDetailsScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(24),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
+                      color: Colors.black.withValues(alpha: 0.05),
                       blurRadius: 10,
                       offset: const Offset(0, 4),
                     ),
@@ -63,22 +72,21 @@ class RoomDetailsScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildDetailRow('Type', 'Computer Laboratory'),
-                    _buildDetailRow('Floor', '1st Floor'),
-                    _buildDetailRow('Block', 'Block A'),
+                    _buildDetailRow('Floor', floorName),
+                    _buildDetailRow('Block', blockName),
                     _buildDetailRow('Desc', 'Main lab for software engineering courses.'),
                     _buildDetailRow('Fun Fact', 'This was the first lab built on campus!'),
                     const SizedBox(height: 16),
                     const Text('Facilities Available:', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 12),
                     
-                    // Facilities Icons Row (from wireframe)
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         _buildFacilityIcon(Icons.wifi, 'Wi-Fi'),
                         _buildFacilityIcon(Icons.computer, 'PCs'),
                         _buildFacilityIcon(Icons.ac_unit, 'AC'),
-                        _buildFacilityIcon(Icons.projector, 'Projector'),
+                        _buildFacilityIcon(Icons.camera_alt_rounded, 'Projector'),
                       ],
                     ),
                   ],
@@ -113,9 +121,9 @@ class RoomDetailsScreen extends StatelessWidget {
     return Column(
       children: [
         CircleAvatar(
-          backgroundColor: const Color(0xFFE8F8EC),
+          backgroundColor: const Color.fromARGB(255, 232, 248, 236),
           radius: 24,
-          child: Icon(icon, color: const Color(0xFF22C55E)),
+          child: Icon(icon, color: const Color.fromARGB(255, 66, 192, 70)),
         ),
         const SizedBox(height: 8),
         Text(label, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
