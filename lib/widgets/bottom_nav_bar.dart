@@ -31,8 +31,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.search),
-          label: 'Search',
+          icon: Icon(Icons.business),
+          label: 'Block',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.map),

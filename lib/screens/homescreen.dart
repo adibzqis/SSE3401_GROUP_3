@@ -25,16 +25,6 @@ class _HomescreenState extends State<Homescreen> {
           setState(() {
             _currentIndex = index;
           });
-
-          if (index == 1) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const BlockSelection()),
-            ).then((_) {
-              setState(() => _currentIndex = 0);
-            });
-          }
-          print("Navigation item $index tapped");
         },
       ),
     );
@@ -45,7 +35,7 @@ class _HomescreenState extends State<Homescreen> {
       case 0:
         return _buildHomeScreen();
       case 1:
-        return _buildSearchView();
+        return _buildBlockSelectionView();
       case 2:
         return _buildMapView();
       case 3:
@@ -122,7 +112,31 @@ class _HomescreenState extends State<Homescreen> {
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     children: [
-                      SizedBox(height: 20),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.05),
+                              blurRadius: 10,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: const TextField(
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.search),
+                            hintText: 'Search rooms, facilities or blocks',
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 18,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Padding(
@@ -317,6 +331,16 @@ class _HomescreenState extends State<Homescreen> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildBlockSelectionView() {
+    return BlockSelection(
+      onBack: () {
+        setState(() {
+          _currentIndex = 0;
+        });
+      },
     );
   }
 

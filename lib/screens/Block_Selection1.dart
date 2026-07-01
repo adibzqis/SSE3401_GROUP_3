@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'floor_selection_screen.dart';
 
 class BlockSelection extends StatefulWidget {
-  const BlockSelection({super.key});
+  final VoidCallback? onBack;
+
+  const BlockSelection({super.key, this.onBack});
 
   @override
   State<BlockSelection> createState() => _BlockSelectionState();
@@ -16,7 +18,16 @@ class _BlockSelectionState extends State<BlockSelection> {
         elevation: 1,
         shadowColor: Color.fromARGB(255, 0, 0, 0),
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
-
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            if (widget.onBack != null) {
+              widget.onBack!();
+            } else {
+              Navigator.pop(context);
+            }
+          },
+        ),
         title: Container(
           alignment: AlignmentDirectional.topStart,
           child: Text(
@@ -175,7 +186,7 @@ class _BlockSelectionState extends State<BlockSelection> {
                             MaterialPageRoute(
                               builder: (context) => FloorSelectionScreen(
                                 blockName: 'Block B',
-                                floors: ['Level 1', 'Level 2', 'Level 3'],
+                                floors: ['Ground Floor', 'Level 1', 'Level 2'],
                               ),
                             ),
                           );
@@ -244,7 +255,7 @@ class _BlockSelectionState extends State<BlockSelection> {
                               MaterialPageRoute(
                                 builder: (context) => FloorSelectionScreen(
                                   blockName: 'Block B',
-                                  floors: ['Level 1', 'Level 2', 'Level 3'],
+                                  floors: ['Ground Floor', 'Level 2', 'Level 3'],
                                 ),
                               ),
                             );
@@ -262,7 +273,7 @@ class _BlockSelectionState extends State<BlockSelection> {
                               MaterialPageRoute(
                                 builder: (context) => FloorSelectionScreen(
                                   blockName: 'Block B',
-                                  floors: ['Level 1', 'Level 2', 'Level 3'],
+                                  floors: ['Ground Floor', 'Level 1', 'Level 2'],
                                 ),
                               ),
                             );
@@ -357,7 +368,7 @@ class _BlockSelectionState extends State<BlockSelection> {
                               MaterialPageRoute(
                                 builder: (context) => FloorSelectionScreen(
                                   blockName: 'Block C',
-                                  floors: ['Level 1', 'Level 2'],
+                                  floors: ['Ground Floor', 'Level 1', 'Level 2'],
                                 ),
                               ),
                             );
@@ -375,7 +386,7 @@ class _BlockSelectionState extends State<BlockSelection> {
                               MaterialPageRoute(
                                 builder: (context) => FloorSelectionScreen(
                                   blockName: 'Block C',
-                                  floors: ['Level 1', 'Level 2'],
+                                  floors: ['Ground Floor', 'Level 1', 'Level 2'],
                                 ),
                               ),
                             );

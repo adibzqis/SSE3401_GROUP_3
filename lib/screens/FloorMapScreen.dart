@@ -11,6 +11,56 @@ class FloorMapScreen extends StatelessWidget {
     required this.floorName,
   });
 
+  String get _floorMapAsset {
+    final key = '${blockName.toLowerCase().replaceAll(' ', '_')}_${floorName.toLowerCase().replaceAll(' ', '_')}';
+
+    switch (key) {
+      case 'block_a_ground_floor':
+        return 'Assets/Gfloor-BlockA.png';
+      case 'block_a_level_1':
+        return 'Assets/1floor-BlockA.png';
+      case 'block_a_level_2':
+        return 'Assets/2floor-BlockA.png';
+      case 'block_b_ground_floor':
+        return 'Assets/Gfloor-BlockB.png';
+      case 'block_b_level_1':
+        return 'Assets/1floor-BlockB.png';
+      case 'block_b_level_2':
+        return 'Assets/2floor-BlockB.png';
+      case 'block_c_level_1':
+        return 'Assets/FSTKM.png';
+      case 'block_c_level_2':
+        return 'Assets/FSTKM.jpg';
+      default:
+        return 'Assets/FSTKM.jpg';
+    }
+  }
+
+  String get _guidanceAsset {
+    final key = '${blockName.toLowerCase().replaceAll(' ', '_')}_${floorName.toLowerCase().replaceAll(' ', '_')}';
+
+    switch (key) {
+      case 'block_a_ground_floor':
+        return 'Assets/Gfloor-BlockAGuide.png';
+      case 'block_a_level_1':
+        return 'Assets/1floor-BlockAGuide.png';
+      case 'block_a_level_2':
+        return 'Assets/2floor-BlockAGuide.png';
+      case 'block_b_ground_floor':
+        return 'Assets/Gfloor-BlockAGuide.png';
+      case 'block_b_level_1':
+        return 'Assets/1floor-BlockAGuide.png';
+      case 'block_b_level_2':
+        return 'Assets/2floor-BlockAGuide.png';
+      case 'block_c_level_1':
+        return 'Assets/FSTKM.png';
+      case 'block_c_level_2':
+        return 'Assets/FSTKM.jpg';
+      default:
+        return 'Assets/FSTKM.jpg';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,12 +90,29 @@ class FloorMapScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(24),
                 child: Container(
                   color: Colors.white,
-                  child: Image.asset(
-                    'Assets/FSTKM.jpg',
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: double.infinity,
+                  child: Center(
+                    child: Image.asset(
+                      _floorMapAsset,
+                      fit: BoxFit.contain,
+                      width: double.infinity,
+                      height: double.infinity,
+                    ),
                   ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Container(
+                width: double.infinity,
+                height: 160,
+                color: Colors.white,
+                child: Image.asset(
+                  _guidanceAsset,
+                  fit: BoxFit.contain,
+                  width: double.infinity,
+                  height: double.infinity,
                 ),
               ),
             ),
