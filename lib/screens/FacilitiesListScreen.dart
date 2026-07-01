@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'RoomDetailsScreen.dart';
+import '../widgets/RoomDetailsScreen.dart';
 
 class FacilitiesListScreen extends StatefulWidget {
   const FacilitiesListScreen({super.key});
