@@ -14,6 +14,15 @@ class RoomDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Safely parse trailing number for subheadings to prevent errors on names without trailing digits
+    String trailingLabel = '';
+    if (roomName.isNotEmpty) {
+      final lastChar = roomName.substring(roomName.length - 1);
+      if (RegExp(r'\d').hasMatch(lastChar)) {
+        trailingLabel = ' - Lab $lastChar';
+      }
+    }
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 232, 248, 236),
       appBar: AppBar(
@@ -29,7 +38,10 @@ class RoomDetailsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('$roomName - Lab ${roomName.substring(roomName.length - 1)}', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black87)),
+              Text(
+                '$roomName$trailingLabel', 
+                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black87),
+              ),
               const SizedBox(height: 16),
               
               // Room Picture Placeholder
@@ -41,7 +53,7 @@ class RoomDetailsScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(24),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.05),
+                      color: Colors.black.withOpacity(0.05),
                       blurRadius: 10,
                       offset: const Offset(0, 4),
                     ),
@@ -62,7 +74,7 @@ class RoomDetailsScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(24),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.05),
+                      color: Colors.black.withOpacity(0.05),
                       blurRadius: 10,
                       offset: const Offset(0, 4),
                     ),
@@ -71,11 +83,10 @@ class RoomDetailsScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buildDetailRow('Type', 'Computer Laboratory'),
+                    _buildDetailRow('Type', 'Facility Workspace'),
                     _buildDetailRow('Floor', floorName),
                     _buildDetailRow('Block', blockName),
-                    _buildDetailRow('Desc', 'Main lab for software engineering courses.'),
-                    _buildDetailRow('Fun Fact', 'This was the first lab built on campus!'),
+                    _buildDetailRow('Desc', 'FCSIT academic asset structural allocation zone.'),
                     const SizedBox(height: 16),
                     const Text('Facilities Available:', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 12),
@@ -86,7 +97,7 @@ class RoomDetailsScreen extends StatelessWidget {
                         _buildFacilityIcon(Icons.wifi, 'Wi-Fi'),
                         _buildFacilityIcon(Icons.computer, 'PCs'),
                         _buildFacilityIcon(Icons.ac_unit, 'AC'),
-                        _buildFacilityIcon(Icons.camera_alt_rounded, 'Projector'),
+                        _buildFacilityIcon(Icons.video_label_rounded, 'Projector'),
                       ],
                     ),
                   ],
