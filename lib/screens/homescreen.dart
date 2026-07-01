@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'about_screen.dart';
+import 'mapping.dart';
 import '../widgets/bottom_nav_bar.dart';
 import 'Block_Selection1.dart';
 import 'FacilitiesListScreen.dart';
@@ -204,8 +206,10 @@ class _HomescreenState extends State<Homescreen> {
                             title: "Block C",
                             onTap: () {
                               _openFloorSelection(context, 'Block C', [
+                                'Ground Floor',
                                 'Level 1',
                                 'Level 2',
+                                'Level 3',
                               ]);
                             },
                           ),
@@ -387,13 +391,7 @@ class _HomescreenState extends State<Homescreen> {
   }
 
   Widget _buildMapView() {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Floor Map'),
-        backgroundColor: const Color.fromARGB(255, 66, 192, 70),
-      ),
-      body: const Center(child: Text('Map View')),
-    );
+    return const Mapping();
   }
 
   Widget _buildGreenView() {
@@ -401,13 +399,7 @@ class _HomescreenState extends State<Homescreen> {
   }
 
   Widget _buildAboutView() {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('About'),
-        backgroundColor: const Color.fromARGB(255, 66, 192, 70),
-      ),
-      body: const Center(child: Text('About View')),
-    );
+    return const AboutScreen();
   }
 
   void _openFloorSelection(

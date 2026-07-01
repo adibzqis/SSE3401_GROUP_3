@@ -3,6 +3,10 @@
         android:label="section_8_plus"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <!-- TODO: Replace with your Google Maps Android API key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="YOUR_ANDROID_API_KEY" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

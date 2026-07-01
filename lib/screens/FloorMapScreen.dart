@@ -11,6 +11,11 @@ class FloorMapScreen extends StatelessWidget {
     required this.floorName,
   });
 
+  bool get _hasData {
+    final key = blockName.toLowerCase().replaceAll(' ', '_');
+    return key == 'block_a' || key == 'block_b' || key == 'block_c';
+  }
+
   String get _floorMapAsset {
     final key = '${blockName.toLowerCase().replaceAll(' ', '_')}_${floorName.toLowerCase().replaceAll(' ', '_')}';
 
@@ -27,12 +32,16 @@ class FloorMapScreen extends StatelessWidget {
         return 'Assets/1floor-BlockB.png';
       case 'block_b_level_2':
         return 'Assets/2floor-BlockB.png';
+      case 'block_c_ground_floor':
+        return 'Assets/Gfloor-BlockC.jpeg';
       case 'block_c_level_1':
-        return 'Assets/FSTKM.png';
+        return 'Assets/1floor-BlockC.jpeg';
       case 'block_c_level_2':
-        return 'Assets/FSTKM.jpg';
+        return 'Assets/2floor-BlockC.jpeg';
+      case 'block_c_level_3':
+        return 'Assets/3floor-BlockC.jpeg';
       default:
-        return 'Assets/FSTKM.jpg';
+        return '';
     }
   }
 
@@ -41,23 +50,16 @@ class FloorMapScreen extends StatelessWidget {
 
     switch (key) {
       case 'block_a_ground_floor':
-        return 'Assets/Gfloor-BlockAGuide.png';
-      case 'block_a_level_1':
-        return 'Assets/1floor-BlockAGuide.png';
-      case 'block_a_level_2':
-        return 'Assets/2floor-BlockAGuide.png';
       case 'block_b_ground_floor':
         return 'Assets/Gfloor-BlockAGuide.png';
+      case 'block_a_level_1':
       case 'block_b_level_1':
         return 'Assets/1floor-BlockAGuide.png';
+      case 'block_a_level_2':
       case 'block_b_level_2':
         return 'Assets/2floor-BlockAGuide.png';
-      case 'block_c_level_1':
-        return 'Assets/FSTKM.png';
-      case 'block_c_level_2':
-        return 'Assets/FSTKM.jpg';
       default:
-        return 'Assets/FSTKM.jpg';
+        return '';
     }
   }
 
@@ -91,12 +93,24 @@ class FloorMapScreen extends StatelessWidget {
                 child: Container(
                   color: Colors.white,
                   child: Center(
-                    child: Image.asset(
-                      _floorMapAsset,
-                      fit: BoxFit.contain,
-                      width: double.infinity,
-                      height: double.infinity,
-                    ),
+                    child: _hasData
+                        ? Image.asset(
+                            _floorMapAsset,
+                            fit: BoxFit.contain,
+                            width: double.infinity,
+                            height: double.infinity,
+                          )
+                        : Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: const [
+                              Icon(Icons.map_outlined, size: 72, color: Colors.grey),
+                              SizedBox(height: 16),
+                              Text(
+                                'No map data available',
+                                style: TextStyle(fontSize: 18, color: Colors.grey),
+                              ),
+                            ],
+                          ),
                   ),
                 ),
               ),
@@ -108,57 +122,72 @@ class FloorMapScreen extends StatelessWidget {
                 width: double.infinity,
                 height: 160,
                 color: Colors.white,
-                child: Image.asset(
-                  _guidanceAsset,
-                  fit: BoxFit.contain,
-                  width: double.infinity,
-                  height: double.infinity,
-                ),
+                child: _hasData
+                    ? Image.asset(
+                        _guidanceAsset,
+                        fit: BoxFit.contain,
+                        width: double.infinity,
+                        height: double.infinity,
+                      )
+                    : Center(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: const [
+                            Icon(Icons.info_outline, size: 48, color: Colors.grey),
+                            SizedBox(height: 10),
+                            Text(
+                              'No guidance data available',
+                              style: TextStyle(fontSize: 16, color: Colors.grey),
+                            ),
+                          ],
+                        ),
+                      ),
               ),
             ),
             const SizedBox(height: 24),
-            InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const FacilitiesListScreen(),
-                  ),
-                );
-              },
-              borderRadius: BorderRadius.circular(20),
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.05),
-                      blurRadius: 10,
-                      offset: const Offset(0, 4),
+            if (_hasData)
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const FacilitiesListScreen(),
                     ),
-                  ],
-                ),
-                child: Row(
-                  children: const [
-                    Icon(Icons.location_on, color: Color.fromARGB(255, 66, 192, 70), size: 28),
-                    SizedBox(width: 16),
-                    Expanded(
-                      child: Text(
-                        'Tap here to view facilities for this floor',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
+                  );
+                },
+                borderRadius: BorderRadius.circular(20),
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.05),
+                        blurRadius: 10,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    children: const [
+                      Icon(Icons.location_on, color: Color.fromARGB(255, 66, 192, 70), size: 28),
+                      SizedBox(width: 16),
+                      Expanded(
+                        child: Text(
+                          'Tap here to view facilities for this floor',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
-                    ),
-                    Icon(Icons.chevron_right, color: Colors.grey),
-                  ],
+                      Icon(Icons.chevron_right, color: Colors.grey),
+                    ],
+                  ),
                 ),
               ),
-            ),
             const SizedBox(height: 16),
           ],
         ),

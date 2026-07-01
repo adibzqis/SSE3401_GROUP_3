@@ -289,7 +289,7 @@ class _BlockSelectionState extends State<BlockSelection> {
                   ),
 
                   Stack(
-                    //Block C
+                    // Block C
                     alignment: AlignmentGeometry.center,
                     children: [
                       GestureDetector(
@@ -299,7 +299,7 @@ class _BlockSelectionState extends State<BlockSelection> {
                             MaterialPageRoute(
                               builder: (context) => FloorSelectionScreen(
                                 blockName: 'Block C',
-                                floors: ['Level 1', 'Level 2'],
+                                floors: ['Ground Floor', 'Level 1', 'Level 2', 'Level 3'],
                               ),
                             ),
                           );
@@ -308,27 +308,26 @@ class _BlockSelectionState extends State<BlockSelection> {
                           width: 500,
                           height: 200,
                           child: Card.outlined(
-                            margin: EdgeInsets.all(15),
+                            margin: const EdgeInsets.all(15),
                             elevation: 3,
-                            shadowColor: Color.fromARGB(255, 0, 0, 0),
-                            color: Color.fromARGB(224, 236, 255, 216),
+                            shadowColor: const Color.fromARGB(255, 0, 0, 0),
+                            color: const Color.fromARGB(224, 236, 255, 216),
                             child: Column(
                               children: [
-                                SizedBox(height: 48),
+                                const SizedBox(height: 48),
                                 Align(
                                   alignment: AlignmentGeometry.xy(-0.9, 1),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: const [
                                       Align(
                                         alignment: AlignmentGeometry.xy(
                                           -0.9,
                                           1,
                                         ),
                                         child: Text(
-                                          "Block C",
+                                          'Block C',
                                           style: TextStyle(
                                             fontSize: 30,
                                             fontWeight: FontWeight(650),
@@ -341,8 +340,7 @@ class _BlockSelectionState extends State<BlockSelection> {
                                           1,
                                         ),
                                         child: Text(
-                                          "View Rooms, Floors, and \n Facilities",
-                                          textScaler: TextScaler.linear(1.2),
+                                          'View Rooms, Floors, and \nFacilities',
                                           style: TextStyle(
                                             fontSize: 10,
                                             fontWeight: FontWeight(500),
@@ -368,12 +366,12 @@ class _BlockSelectionState extends State<BlockSelection> {
                               MaterialPageRoute(
                                 builder: (context) => FloorSelectionScreen(
                                   blockName: 'Block C',
-                                  floors: ['Ground Floor', 'Level 1', 'Level 2'],
+                                  floors: ['Ground Floor', 'Level 1', 'Level 2', 'Level 3'],
                                 ),
                               ),
                             );
                           },
-                          child: Icon(Icons.next_plan, size: 30),
+                          child: const Icon(Icons.next_plan, size: 30),
                         ),
                       ),
                       Positioned(
@@ -386,12 +384,12 @@ class _BlockSelectionState extends State<BlockSelection> {
                               MaterialPageRoute(
                                 builder: (context) => FloorSelectionScreen(
                                   blockName: 'Block C',
-                                  floors: ['Ground Floor', 'Level 1', 'Level 2'],
+                                  floors: ['Ground Floor', 'Level 1', 'Level 2', 'Level 3'],
                                 ),
                               ),
                             );
                           },
-                          child: Icon(
+                          child: const Icon(
                             Icons.business_rounded,
                             size: 70,
                             color: Color.fromARGB(255, 174, 238, 105),
