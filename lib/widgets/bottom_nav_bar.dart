@@ -32,19 +32,19 @@ class _BottomNavBarState extends State<BottomNavBar> {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.business),
-          label: 'Blocks',
+          label: 'Block',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.calendar_today),
-          label: 'Schedule',
+          icon: Icon(Icons.map),
+          label: 'Map',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.assignment),
-          label: 'Tasks',
+          icon: Icon(Icons.eco),
+          label: 'Green',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: 'Profile',
+          icon: Icon(Icons.info),
+          label: 'About',
         ),
       ],
     );
