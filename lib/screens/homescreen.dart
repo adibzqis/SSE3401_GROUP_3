@@ -6,6 +6,7 @@ import 'Block_Selection1.dart';
 import 'FacilitiesListScreen.dart';
 import 'floor_selection_screen.dart';
 import 'GreenAwarenessScreen.dart';
+import 'notification_screen.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -268,14 +269,17 @@ class _HomescreenState extends State<Homescreen> {
           pinned: true,
           backgroundColor: Colors.transparent,
           elevation: 0,
-          leading: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.list, color: Colors.black),
-          ),
           actions: <Widget>[
             IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.group, color: Colors.black),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const NotificationScreen(),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.notifications, color: Colors.black),
             ),
           ],
           flexibleSpace: FlexibleSpaceBar(
