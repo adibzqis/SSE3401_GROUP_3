@@ -93,14 +93,61 @@ class _FacilitiesListScreenState extends State<FacilitiesListScreen> with Ticker
         {'name': 'Multimedia Studio', 'type': 'Multimedia Studio', 'desc': 'Isolated acoustics capture studio and design room.'},
         {'name': 'Power Room', 'type': 'Utility', 'desc': 'Electrical switchboard room.'},
       ]
+    },
+    'Block C': {
+      'Ground Floor': [
+        {'name': 'Lobi Utama / Central Foyer', 'type': 'Public Area', 'desc': 'Main central drop-off reception lobby area.'},
+        {'name': 'Seksyen Pentadbiran & Penyelenggaraan (C0-10 to C0-13)', 'type': 'Office', 'desc': 'Administration and Facility Maintenance Section office.'},
+        {'name': 'Bilik Profesor 1 (C0-14 & C0-15)', 'type': 'Office', 'desc': 'Dedicated senior academic workspace wing.'},
+        {'name': 'Bilik Profesor 2 (C0-16 & C0-17)', 'type': 'Office', 'desc': 'Professor consultations and project operations room.'},
+        {'name': 'Bilik Profesor 3 (C0-18 & C0-19)', 'type': 'Office', 'desc': 'Faculty professor guidance and administrative desk.'},
+        {'name': 'Pelantar Outpost', 'type': 'Public Area', 'desc': 'Rear exterior connection platform structure.'},
+        {'name': 'Surau Lelaki (Block C Wing)', 'type': 'Prayer Room', 'desc': 'Male designated Islamic prayer sanctuary.'},
+        {'name': 'Surau Wanita (Block C Wing)', 'type': 'Prayer Room', 'desc': 'Female designated Islamic prayer sanctuary.'},
+        {'name': 'Bilik Elektrik LV', 'type': 'Utility', 'desc': 'Low Voltage power board distribution grid room.'},
+      ],
+      'First Floor': [
+        {'name': 'Bilik Seminar Utama', 'type': 'Seminar Room', 'desc': 'Large centralized faculty presentation and seminar venue.'},
+        {'name': 'Ruang Legar / Gathering Lounge', 'type': 'Public Area', 'desc': 'Spacious academic discussion corridor.'},
+        {'name': 'C1-01 to C1-03: Senior Faculty Rooms', 'type': 'Office', 'desc': 'Academic staff offices including Prof. Mohd, Dr. Amir, Ahmad Alauddin.'},
+        {'name': 'C1-04 to C1-06: Faculty Offices', 'type': 'Office', 'desc': 'Lecturer research cabins including Dr. Norasila, Dr. Hazlina, Dr. Alif.'},
+        {'name': 'C1-07 to C1-09: Consultation Offices', 'type': 'Office', 'desc': 'Academic rooms including Dr. Zuriati, Dr. Lilly, Dr. Nur Izura.'},
+        {'name': 'C1-11 to C1-13: Academic Desks', 'type': 'Office', 'desc': 'Lecturer offices including Dr. Hamidah, Dr. Ten, Dr. Noraziah.'},
+        {'name': 'C1-14 to C1-16: Staff Offices', 'type': 'Office', 'desc': 'Faculty consultation rooms including Dr. Maslina, Dr. Wan Nurhayati.'},
+        {'name': 'C1-17 to C1-19: Research Rooms', 'type': 'Office', 'desc': 'Lecturer chambers including Dr. Siti Khatijah, Dr. Hazlina.'},
+        {'name': 'C1-20 to C1-22: Study Units', 'type': 'Office', 'desc': 'Academic desks including Dr. Hafeez, PM Dr. Taufik.'},
+        {'name': 'C1-23 to C1-25: Faculty Offices', 'type': 'Office', 'desc': 'Lecturer chambers including Dr. Raihani, Prof. Abu Bakar.'},
+        {'name': 'C1-26 to C1-28: Senior Lecturer Desks', 'type': 'Office', 'desc': 'Academic cabins including Dr. Azizol, Dr. Salfarina, Dr. Abdullah.'},
+        {'name': 'C1-29 to C1-32: Department Staff Offices', 'type': 'Office', 'desc': 'Lecturer workspaces including Dr. Syaiful, Dr. Luqman, Dr. Khaironi.'},
+        {'name': 'C1-49 to C1-53: Upper Academic Row', 'type': 'Office', 'desc': 'Faculty wing including Dr. M. Daniel, Dr. Aziah, Dr. Nur Alifa, Dr. Marziah.'},
+      ],
+      'Second Floor': [
+        {'name': 'Bilik Mesyuarat Utama (C2-19 & C2-20)', 'type': 'Meeting Room', 'desc': 'Main corporate operations board room.'},
+        {'name': 'Pejabat Am K.J. (General Office)', 'type': 'Office', 'desc': 'Head of Department general administration hub.'},
+        {'name': 'Bilik Cetak (Printing Room)', 'type': 'Utility', 'desc': 'Central high-volume academic duplication unit.'},
+        {'name': 'Bilik Dokumen & Bilik Fail (C2-34 to C2-36)', 'type': 'Storage', 'desc': 'Secure faculty archives and student record system vault.'},
+        {'name': 'C2-01 to C2-04: Academic Offices', 'type': 'Office', 'desc': 'Lecturer suites including Mohd Nor, Dr. Rohaya, Dr. Fatimah, Dr. N. Farida.'},
+        {'name': 'C2-05 to C2-09: Department Cabins', 'type': 'Office', 'desc': 'Faculty rooms including Dr. Azlina, Dr. Manzanah, Dr. Fatimah, Dr. Nur Fadilina.'},
+        {'name': 'C2-11 to C2-16: Research Consultation Desks', 'type': 'Office', 'desc': 'Lecturer suites including Dr. Masrina, Dr. Siti Nurul Ain, Dr. Sufri.'},
+        {'name': 'C2-44 to C2-48: Specialized Academic Suites', 'type': 'Office', 'desc': 'Faculty wing including Dr. N. Amelina, Dr. Noris, Dr. N. Azura.'},
+      ],
+      'Third Floor': [
+        {'name': 'C3-01 to C3-05: Department Workspaces', 'type': 'Office', 'desc': 'Lecturer suites including Ahmad Alauddin, Dato Prof. Dr. Shamala, Dr. Amir.'},
+        {'name': 'C3-06 to C3-09: Senior Staff Offices', 'type': 'Office', 'desc': 'Academic offices including Dr. Azreen Azman, Dr. Azree, Dr. Puteri, Dr. Yunus.'},
+        {'name': 'C3-11 to C3-16: Academic Wings', 'type': 'Office', 'desc': 'Lecturer suites including Dr. Hizmawati, Dr. Khairul Azhar, Dr. Ng Keng Yap.'},
+        {'name': 'C3-17 to C3-21: Research Workspaces', 'type': 'Office', 'desc': 'Faculty suites including Dr. Shymala, Dr. Novia, Dr. Pathiah, Dr. Sharifah.'},
+        {'name': 'C3-22 to C3-25: Consult Cabin Row', 'type': 'Office', 'desc': 'Lecturer offices including Dr. Salmi Baharom, Dr. Saadah, Dr. Yusmadi.'},
+        {'name': 'C3-26 to C3-31: Left Wing Row Desks', 'type': 'Office', 'desc': 'Academic staff rooms including Anita Ban, Dilrozi, Dr. Nor Hayati.'},
+        {'name': 'C3-10 & C3-32: Corner Academic Units', 'type': 'Office', 'desc': 'Private executive researcher suites.'},
+      ]
     }
   };
 
   @override
   void initState() {
     super.initState();
-    _blockTabController = TabController(length: 2, vsync: this);
-    _floorTabController = TabController(length: 3, vsync: this);
+    _blockTabController = TabController(length: 3, vsync: this); // Extended length to 3 for Block C
+    _floorTabController = TabController(length: 4, vsync: this); // Extended length to 4 for Third Floor
 
     _blockTabController.addListener(() => setState(() {}));
     _floorTabController.addListener(() => setState(() {}));
@@ -115,10 +162,14 @@ class _FacilitiesListScreenState extends State<FacilitiesListScreen> with Ticker
 
   @override
   Widget build(BuildContext context) {
-    String selectedBlock = _blockTabController.index == 0 ? 'Block A' : 'Block B';
+    String selectedBlock = 'Block A';
+    if (_blockTabController.index == 1) selectedBlock = 'Block B';
+    if (_blockTabController.index == 2) selectedBlock = 'Block C';
+
     String selectedFloor = 'Ground Floor';
     if (_floorTabController.index == 1) selectedFloor = 'First Floor';
     if (_floorTabController.index == 2) selectedFloor = 'Second Floor';
+    if (_floorTabController.index == 3) selectedFloor = 'Third Floor';
 
     List<Map<String, String>> currentFacilities = fscitData[selectedBlock]?[selectedFloor] ?? [];
 
@@ -161,6 +212,7 @@ class _FacilitiesListScreenState extends State<FacilitiesListScreen> with Ticker
                   tabs: const [
                     Tab(text: 'BLOCK A'),
                     Tab(text: 'BLOCK B'),
+                    Tab(text: 'BLOCK C'),
                   ],
                 ),
               ),
@@ -173,11 +225,12 @@ class _FacilitiesListScreenState extends State<FacilitiesListScreen> with Ticker
                 indicatorWeight: 3,
                 labelColor: const Color(0xFF22C55E),
                 unselectedLabelColor: const Color(0xFF64748B),
-                labelStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                labelStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                 tabs: const [
                   Tab(text: 'Ground'),
                   Tab(text: '1st Floor'),
                   Tab(text: '2nd Floor'),
+                  Tab(text: '3rd Floor'),
                 ],
               ),
             ],
@@ -256,7 +309,7 @@ class _FacilitiesListScreenState extends State<FacilitiesListScreen> with Ticker
                                     Text(
                                       facility['name']!,
                                       style: const TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 15,
                                         fontWeight: FontWeight.bold,
                                         color: Color(0xFF0F172A),
                                         height: 1.2,
@@ -310,6 +363,8 @@ class _FacilitiesListScreenState extends State<FacilitiesListScreen> with Ticker
         return Icons.electrical_services_rounded;
       case 'Dining':
         return Icons.restaurant_rounded;
+      case 'Public Area':
+        return Icons.roofing_rounded;
       default:
         return Icons.room_preferences_rounded;
     }
