@@ -261,15 +261,7 @@ class _HomescreenState extends State<Homescreen> {
   }
 
   Widget _buildGreenView() {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Facilities'),
-        backgroundColor: const Color.fromARGB(255, 66, 192, 70),
-      ),
-      body: const Center(
-        child: Text('Green/Facilities View'),
-      ),
-    );
+    return const FacilitiesListScreen();
   }
 
   Widget _buildAboutView() {
