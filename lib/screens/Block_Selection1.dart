@@ -16,7 +16,6 @@ class _BlockSelectionState extends State<BlockSelection> {
         elevation: 1,
         shadowColor: Color.fromARGB(255, 0, 0, 0),
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
-
         title: Container(
           alignment: AlignmentDirectional.topStart,
           child: Text(
