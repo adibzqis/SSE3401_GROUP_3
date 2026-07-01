@@ -3,6 +3,7 @@ import '../widgets/bottom_nav_bar.dart';
 import 'Block_Selection1.dart';
 import 'FacilitiesListScreen.dart';
 import 'floor_selection_screen.dart';
+import 'GreenAwarenessScreen.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -30,6 +31,15 @@ class _HomescreenState extends State<Homescreen> {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const BlockSelection()),
+            ).then((_) {
+              setState(() => _currentIndex = 0);
+            });
+          } else if (index == 3) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const GreenAwarenessScreen(),
+              ),
             ).then((_) {
               setState(() => _currentIndex = 0);
             });
