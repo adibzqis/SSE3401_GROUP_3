@@ -16,6 +16,197 @@ class Homescreen extends StatefulWidget {
 
 class _HomescreenState extends State<Homescreen> {
   int _currentIndex = 0;
+  final TextEditingController _searchController = TextEditingController();
+  String _searchQuery = '';
+
+  final List<Map<String, dynamic>> _searchItems = [
+    {
+      'title': 'Block A',
+      'subtitle': 'Ground Floor, Level 1, Level 2',
+      'type': 'block',
+      'block': 'Block A',
+      'floors': ['Ground Floor', 'Level 1', 'Level 2'],
+    },
+    {
+      'title': 'Block B',
+      'subtitle': 'Level 1, Level 2, Level 3',
+      'type': 'block',
+      'block': 'Block B',
+      'floors': ['Level 1', 'Level 2', 'Level 3'],
+    },
+    {
+      'title': 'Block C',
+      'subtitle': 'Ground Floor, Level 1, Level 2, Level 3',
+      'type': 'block',
+      'block': 'Block C',
+      'floors': ['Ground Floor', 'Level 1', 'Level 2', 'Level 3'],
+    },
+    {
+      'title': 'Block A - Ground Floor',
+      'subtitle': 'View the ground floor map for Block A',
+      'type': 'floor',
+      'block': 'Block A',
+      'floor': 'Ground Floor',
+    },
+    {
+      'title': 'Block A - Level 1',
+      'subtitle': 'View the level 1 map for Block A',
+      'type': 'floor',
+      'block': 'Block A',
+      'floor': 'Level 1',
+    },
+    {
+      'title': 'Block A - Level 2',
+      'subtitle': 'View the level 2 map for Block A',
+      'type': 'floor',
+      'block': 'Block A',
+      'floor': 'Level 2',
+    },
+    {
+      'title': 'Block B - Level 1',
+      'subtitle': 'View the level 1 map for Block B',
+      'type': 'floor',
+      'block': 'Block B',
+      'floor': 'Level 1',
+    },
+    {
+      'title': 'Block B - Level 2',
+      'subtitle': 'View the level 2 map for Block B',
+      'type': 'floor',
+      'block': 'Block B',
+      'floor': 'Level 2',
+    },
+    {
+      'title': 'Block B - Level 3',
+      'subtitle': 'View the level 3 map for Block B',
+      'type': 'floor',
+      'block': 'Block B',
+      'floor': 'Level 3',
+    },
+    {
+      'title': 'Block C - Ground Floor',
+      'subtitle': 'View the ground floor map for Block C',
+      'type': 'floor',
+      'block': 'Block C',
+      'floor': 'Ground Floor',
+    },
+    {
+      'title': 'Block C - Level 1',
+      'subtitle': 'View the level 1 map for Block C',
+      'type': 'floor',
+      'block': 'Block C',
+      'floor': 'Level 1',
+    },
+    {
+      'title': 'Block C - Level 2',
+      'subtitle': 'View the level 2 map for Block C',
+      'type': 'floor',
+      'block': 'Block C',
+      'floor': 'Level 2',
+    },
+    {
+      'title': 'Block C - Level 3',
+      'subtitle': 'View the level 3 map for Block C',
+      'type': 'floor',
+      'block': 'Block C',
+      'floor': 'Level 3',
+    },
+    {
+      'title': 'Campus Map',
+      'subtitle': 'Open the FSKTM campus guide page',
+      'type': 'map',
+    },
+  ];
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _onSearchChanged(String query) {
+    setState(() {
+      _searchQuery = query.trim();
+    });
+  }
+
+  List<Map<String, dynamic>> _getSearchResults() {
+    if (_searchQuery.isEmpty) {
+      return [];
+    }
+
+    final lowerQuery = _searchQuery.toLowerCase();
+    return _searchItems.where((item) {
+      final title = (item['title'] as String).toLowerCase();
+      final subtitle = (item['subtitle'] as String).toLowerCase();
+      return title.contains(lowerQuery) || subtitle.contains(lowerQuery);
+    }).toList();
+  }
+
+  void _openSearchResult(BuildContext context, Map<String, dynamic> item) {
+    final type = item['type'] as String;
+    if (type == 'block') {
+      _openFloorSelection(context, item['block'] as String, item['floors'] as List<String>);
+    } else if (type == 'floor') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => FloorSelectionScreen(
+            blockName: item['block'] as String,
+            floors: [item['floor'] as String],
+          ),
+        ),
+      );
+    } else if (type == 'map') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Mapping()),
+      );
+    }
+  }
+
+  Widget _buildSearchResults() {
+    final results = _getSearchResults();
+    if (results.isEmpty) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12.0),
+        child: Text(
+          'No results found for "$_searchQuery"',
+          style: TextStyle(color: Colors.grey[700]),
+        ),
+      );
+    }
+
+    return Container(
+      margin: const EdgeInsets.only(top: 16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: ListView.separated(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: results.length,
+        separatorBuilder: (_, __) => const Divider(height: 1),
+        itemBuilder: (context, index) {
+          final item = results[index];
+          return ListTile(
+            title: Text(item['title'] as String),
+            subtitle: Text(item['subtitle'] as String),
+            trailing: const Icon(Icons.search, color: Color.fromARGB(255, 66, 192, 70)),
+            onTap: () => _openSearchResult(context, item),
+          );
+        },
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -146,8 +337,10 @@ class _HomescreenState extends State<Homescreen> {
                             ),
                           ],
                         ),
-                        child: const TextField(
-                          decoration: InputDecoration(
+                        child: TextField(
+                          controller: _searchController,
+                          onChanged: _onSearchChanged,
+                          decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.search),
                             hintText: 'Search rooms, facilities or blocks',
                             border: InputBorder.none,
@@ -158,8 +351,9 @@ class _HomescreenState extends State<Homescreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
-                      Align(
+                      if (_searchQuery.isNotEmpty) _buildSearchResults(),
+                      if (_searchQuery.isEmpty) const SizedBox(height: 20),
+                      if (_searchQuery.isEmpty) Align(
                         alignment: Alignment.centerLeft,
                         child: Padding(
                           padding: const EdgeInsets.only(
