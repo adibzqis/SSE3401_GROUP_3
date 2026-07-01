@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/bottom_nav_bar.dart';
 import 'floor_selection_screen.dart';
-
+import 'Block_Selection.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -15,7 +15,8 @@ class _HomescreenState extends State<Homescreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( // Removed the MaterialApp wrapper
+    return Scaffold(
+      // Removed the MaterialApp wrapper
       body: _buildBody(),
       bottomNavigationBar: BottomNavBar(
         currentIndex: _currentIndex,
@@ -23,6 +24,15 @@ class _HomescreenState extends State<Homescreen> {
           setState(() {
             _currentIndex = index;
           });
+
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const BlockSelection()),
+            ).then((_) {
+              setState(() => _currentIndex = 0);
+            });
+          }
           print("Navigation item $index tapped");
         },
       ),
@@ -62,7 +72,10 @@ class _HomescreenState extends State<Homescreen> {
                 Align(
                   alignment: Alignment.center,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.black.withValues(alpha: 0.4),
                       borderRadius: BorderRadius.circular(12),
@@ -95,7 +108,10 @@ class _HomescreenState extends State<Homescreen> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 8.0, bottom: 12.0),
+                          padding: const EdgeInsets.only(
+                            left: 8.0,
+                            bottom: 12.0,
+                          ),
                           child: Text(
                             "Quick Access:",
                             style: TextStyle(
@@ -193,7 +209,7 @@ class _HomescreenState extends State<Homescreen> {
                               height: 1.5,
                             ),
                           ),
-                          const SizedBox(height:30),
+                          const SizedBox(height: 30),
                           Text(
                             "Bla Bla Bla",
                             style: TextStyle(
@@ -224,14 +240,16 @@ class _HomescreenState extends State<Homescreen> {
     );
   }
 
-  void _openFloorSelection(BuildContext context, String blockName, List<String> floors) {
+  void _openFloorSelection(
+    BuildContext context,
+    String blockName,
+    List<String> floors,
+  ) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => FloorSelectionScreen(
-          blockName: blockName,
-          floors: floors,
-        ),
+        builder: (context) =>
+            FloorSelectionScreen(blockName: blockName, floors: floors),
       ),
     );
   }
@@ -257,7 +275,12 @@ class _HomescreenState extends State<Homescreen> {
               icon,
               shadows: [
                 Shadow(
-                  color: const Color.fromARGB(255, 134, 203, 65).withValues(alpha: 0.3),
+                  color: const Color.fromARGB(
+                    255,
+                    134,
+                    203,
+                    65,
+                  ).withValues(alpha: 0.3),
                   offset: Offset(2, 2),
                   blurRadius: 3,
                 ),

@@ -16,7 +16,6 @@ class _BlockSelectionState extends State<BlockSelection> {
         elevation: 1,
         shadowColor: const Color.fromARGB(255, 0, 0, 0),
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-        leading: const Icon(Icons.arrow_back, color: Colors.black),
         title: const Text(
           "Select Block",
           style: TextStyle(fontWeight: FontWeight.w900, color: Colors.black),
@@ -106,7 +105,12 @@ class _BlockSelectionState extends State<BlockSelection> {
               child: Icon(
                 Icons.business_rounded,
                 size: 90,
-                color: Color.fromARGB(50, 66, 192, 70), // Faded green background icon
+                color: Color.fromARGB(
+                  50,
+                  66,
+                  192,
+                  70,
+                ), // Faded green background icon
               ),
             ),
           ],
