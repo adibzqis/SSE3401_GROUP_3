@@ -147,7 +147,11 @@ class _HomescreenState extends State<Homescreen> {
   void _openSearchResult(BuildContext context, Map<String, dynamic> item) {
     final type = item['type'] as String;
     if (type == 'block') {
-      _openFloorSelection(context, item['block'] as String, item['floors'] as List<String>);
+      _openFloorSelection(
+        context,
+        item['block'] as String,
+        item['floors'] as List<String>,
+      );
     } else if (type == 'floor') {
       Navigator.push(
         context,
@@ -170,10 +174,13 @@ class _HomescreenState extends State<Homescreen> {
     final results = _getSearchResults();
     if (results.isEmpty) {
       return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 12.0),
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
         child: Text(
           'No results found for "$_searchQuery"',
-          style: TextStyle(color: Colors.grey[700]),
+          style: TextStyle(
+            color: Colors.grey[600],
+            fontStyle: FontStyle.italic,
+          ),
         ),
       );
     }
@@ -182,12 +189,12 @@ class _HomescreenState extends State<Homescreen> {
       margin: const EdgeInsets.only(top: 16),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 14,
+            offset: const Offset(0, 6),
           ),
         ],
       ),
@@ -195,13 +202,28 @@ class _HomescreenState extends State<Homescreen> {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: results.length,
-        separatorBuilder: (_, __) => const Divider(height: 1),
+        separatorBuilder: (_, __) =>
+            const Divider(height: 1, color: Color(0xFFF3F4F6)),
         itemBuilder: (context, index) {
           final item = results[index];
           return ListTile(
-            title: Text(item['title'] as String),
-            subtitle: Text(item['subtitle'] as String),
-            trailing: const Icon(Icons.search, color: Color.fromARGB(255, 66, 192, 70)),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 4,
+            ),
+            title: Text(
+              item['title'] as String,
+              style: const TextStyle(fontWeight: FontWeight.w600),
+            ),
+            subtitle: Text(
+              item['subtitle'] as String,
+              style: TextStyle(color: Colors.grey[500], fontSize: 13),
+            ),
+            trailing: const Icon(
+              Icons.arrow_forward_ios,
+              size: 14,
+              color: Color.fromARGB(255, 66, 192, 70),
+            ),
             onTap: () => _openSearchResult(context, item),
           );
         },
@@ -212,7 +234,7 @@ class _HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Removed the MaterialApp wrapper
+      backgroundColor: const Color(0xFFF9FBF9),
       body: _buildBody(),
       bottomNavigationBar: BottomNavBar(
         currentIndex: _currentIndex,
@@ -238,7 +260,6 @@ class _HomescreenState extends State<Homescreen> {
               setState(() => _currentIndex = 0);
             });
           }
-          print("Navigation item $index tapped");
         },
       ),
     );
@@ -249,355 +270,295 @@ class _HomescreenState extends State<Homescreen> {
       case 0:
         return _buildHomeScreen();
       case 1:
-        return _buildBlockSelectionView();
+        return BlockSelection(onBack: () => setState(() => _currentIndex = 0));
       case 2:
-        return _buildMapView();
+        return const Mapping();
       case 3:
-        return _buildGreenView();
+        return const FacilitiesListScreen();
       case 4:
-        return _buildAboutView();
+        return const AboutScreen();
       default:
         return _buildHomeScreen();
     }
   }
 
   Widget _buildHomeScreen() {
+    const themeColor = Color.fromARGB(255, 66, 192, 70);
+
     return CustomScrollView(
       slivers: [
         SliverAppBar(
-          expandedHeight: 300,
+          expandedHeight: 240,
           pinned: true,
-          backgroundColor: Colors.transparent,
           elevation: 0,
-          actions: <Widget>[
-            IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const NotificationScreen(),
-                  ),
-                );
-              },
-              icon: const Icon(Icons.notifications, color: Colors.black),
-            ),
-          ],
+          backgroundColor: Colors.white,
           flexibleSpace: FlexibleSpaceBar(
-            background: Stack(
-              children: [
-                Positioned.fill(
-                  child: Opacity(
-                    opacity: 0.7,
-                    child: Image.asset(
-                      "Assets/backgroundhomepage.jpg",
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 12,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.black.withValues(alpha: 0.4),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      "FSKTM NAVIGATOR",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight(670),
-                        fontSize: 28,
-                        color: const Color.fromARGB(255, 66, 192, 70),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        SliverList(
-          delegate: SliverChildListDelegate([
-            Container(
-              color: const Color.fromARGB(169, 211, 255, 204),
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(16),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withValues(alpha: 0.05),
-                              blurRadius: 10,
-                              offset: const Offset(0, 4),
-                            ),
-                          ],
-                        ),
-                        child: TextField(
-                          controller: _searchController,
-                          onChanged: _onSearchChanged,
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.search),
-                            hintText: 'Search rooms, facilities or blocks',
-                            border: InputBorder.none,
-                            contentPadding: EdgeInsets.symmetric(
-                              horizontal: 16,
-                              vertical: 18,
-                            ),
-                          ),
-                        ),
-                      ),
-                      if (_searchQuery.isNotEmpty) _buildSearchResults(),
-                      if (_searchQuery.isEmpty) const SizedBox(height: 20),
-                      if (_searchQuery.isEmpty) Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            left: 8.0,
-                            bottom: 12.0,
-                          ),
-                          child: Text(
-                            "Quick Access:",
-                            style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: const Color.fromARGB(255, 0, 0, 0),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          _buildDashboardItem(
-                            icon: Icons.business,
-                            title: "Block A",
-                            onTap: () {
-                              _openFloorSelection(context, 'Block A', [
-                                'Ground Floor',
-                                'Level 1',
-                                'Level 2',
-                              ]);
-                            },
-                          ),
-                          _buildDashboardItem(
-                            icon: Icons.business,
-                            title: "Block B",
-                            onTap: () {
-                              _openFloorSelection(context, 'Block B', [
-                                'Level 1',
-                                'Level 2',
-                                'Level 3',
-                              ]);
-                            },
-                          ),
-                          _buildDashboardItem(
-                            icon: Icons.business,
-                            title: "Block C",
-                            onTap: () {
-                              _openFloorSelection(context, 'Block C', [
-                                'Ground Floor',
-                                'Level 1',
-                                'Level 2',
-                                'Level 3',
-                              ]);
-                            },
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 20),
-                    ],
-                  ),
+            centerTitle: true,
+            titlePadding: const EdgeInsets.only(bottom: 56),
+            title: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.4),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Text(
+                "FSKTM NAVIGATOR",
+                style: TextStyle(
+                  fontWeight: FontWeight.w800,
+                  fontSize: 20,
+                  color: Colors.white,
+                  letterSpacing: 1.5,
                 ),
               ),
             ),
-          ]),
-        ),
-        SliverList(
-          delegate: SliverChildListDelegate([
-            Container(
-              color: Colors.grey[100],
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.1),
-                        blurRadius: 4,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
+            background: Image.asset(
+              "Assets/backgroundhomepage.jpg",
+              fit: BoxFit.cover,
+            ),
+          ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 12.0),
+              child: CircleAvatar(
+                backgroundColor: Colors.white.withOpacity(0.85),
+                child: IconButton(
+                  icon: const Icon(
+                    Icons.notifications_outlined,
+                    color: Colors.black87,
                   ),
-                  child: Stack(
-                    children: [
-                      Column(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const NotificationScreen(),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+
+        // Body Segment wrapped in a responsive design container safely centered
+        SliverToBoxAdapter(
+          child: Center(
+            child: Container(
+              constraints: const BoxConstraints(
+                maxWidth: 650,
+              ), // Standard layout alignment cap
+              padding: const EdgeInsets.fromLTRB(20, 24, 20, 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // High-Class Search Bar Design
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.04),
+                          blurRadius: 16,
+                          offset: const Offset(0, 6),
+                        ),
+                      ],
+                    ),
+                    child: TextField(
+                      controller: _searchController,
+                      onChanged: _onSearchChanged,
+                      decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.search, color: themeColor),
+                        hintText: 'Search rooms, facilities or blocks',
+                        hintStyle: TextStyle(
+                          color: Colors.black38,
+                          fontSize: 14,
+                        ),
+                        border: InputBorder.none,
+                        contentPadding: EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 16,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  if (_searchQuery.isNotEmpty) _buildSearchResults(),
+
+                  if (_searchQuery.isEmpty) ...[
+                    const SizedBox(height: 28),
+                    const Text(
+                      "Quick Access",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                        letterSpacing: 0.3,
+                      ),
+                    ),
+                    const SizedBox(height: 14),
+
+                    // Elegant structural layout instead of standard raw boxes
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: _buildDashboardItem(
+                            icon: Icons.corporate_fare_rounded,
+                            title: "Block A",
+                            onTap: () => _openFloorSelection(
+                              context,
+                              'Block A',
+                              ['Ground Floor', 'Level 1', 'Level 2'],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: _buildDashboardItem(
+                            icon: Icons.corporate_fare_rounded,
+                            title: "Block B",
+                            onTap: () => _openFloorSelection(
+                              context,
+                              'Block B',
+                              ['Level 1', 'Level 2', 'Level 3'],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: _buildDashboardItem(
+                            icon: Icons.corporate_fare_rounded,
+                            title: "Block C",
+                            onTap: () => _openFloorSelection(
+                              context,
+                              'Block C',
+                              ['Ground Floor', 'Level 1', 'Level 2', 'Level 3'],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 28),
+
+                    // Main Showcase Navigation Info Card
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(24),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(24),
+                        border: Border.all(
+                          color: themeColor.withOpacity(0.12),
+                          width: 1,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.02),
+                            blurRadius: 16,
+                            offset: const Offset(0, 8),
+                          ),
+                        ],
+                      ),
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            "Get Started",
-                            style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 0, 0, 0),
-                            ),
+                          Row(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: themeColor.withOpacity(0.1),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: const Icon(
+                                  Icons.explore_outlined,
+                                  color: themeColor,
+                                  size: 20,
+                                ),
+                              ),
+                              const SizedBox(width: 12),
+                              const Text(
+                                "Get Started",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black87,
+                                ),
+                              ),
+                            ],
                           ),
-                          const SizedBox(height: 12),
-                          Text(
+                          const SizedBox(height: 14),
+                          const Text(
                             "Navigate FSKTM with Ease",
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 15,
                               fontWeight: FontWeight.w600,
-                              color: const Color.fromARGB(255, 66, 192, 70),
+                              color: themeColor,
                             ),
                           ),
-                          const SizedBox(height: 16),
+                          const SizedBox(height: 10),
                           Text(
                             "Explore our interactive campus maps, locate facilities, and find your way around FSKTM. Use the Quick Access section above to explore different blocks and floors.",
                             style: TextStyle(
                               fontSize: 13,
-                              color: Colors.grey[700],
+                              color: Colors.grey[600],
                               height: 1.5,
                             ),
                           ),
-                          const SizedBox(height: 30),
-                          Text(
-                            "Bla Bla Bla",
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey[600],
-                              height: 1.4,
-                            ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 16.0),
+                            child: Divider(color: Color(0xFFF3F4F6), height: 1),
+                          ),
+
+                          // Sensible replacement instead of "Bla Bla Bla"
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Icon(
+                                Icons.lightbulb_outline_rounded,
+                                color: Colors.orangeAccent,
+                                size: 18,
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Campus Info Tip",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black87,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 2),
+                                    Text(
+                                      "Main lecture halls (DK1-DK4) are predominantly structured inside Block A, while labs and faculty support hubs populate Blocks B and C.",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.grey[500],
+                                        height: 1.4,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                      Positioned(
-                        bottom: 8,
-                        right: 12,
-                        child: Icon(
-                          Icons.arrow_forward,
-                          size: 24,
-                          color: const Color.fromARGB(255, 66, 192, 70),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                    ),
+                  ],
+                ],
               ),
             ),
-          ]),
+          ),
         ),
       ],
     );
-  }
-
-  Widget _buildSearchView() {
-    return Container(
-      color: const Color.fromARGB(255, 232, 248, 236),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Search',
-              style: TextStyle(
-                fontSize: 26,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-            ),
-            const SizedBox(height: 16),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.05),
-                    blurRadius: 10,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: const TextField(
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.search),
-                  hintText: 'Search rooms, blocks, or facilities',
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 18),
-                ),
-              ),
-            ),
-            const SizedBox(height: 24),
-            const Text(
-              'Quick search tips',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(height: 12),
-            _buildSearchTip('Search by room number or facility name.'),
-            _buildSearchTip('Use block names like Block A, B, or C.'),
-            _buildSearchTip('Tap the floor selection cards on the home page to open the floor map.'),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildBlockSelectionView() {
-    return BlockSelection(
-      onBack: () {
-        setState(() {
-          _currentIndex = 0;
-        });
-      },
-    );
-  }
-
-  Widget _buildSearchTip(String text) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(top: 4),
-            child: Icon(Icons.check_circle, size: 20, color: Color.fromARGB(255, 66, 192, 70)),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Text(
-              text,
-              style: const TextStyle(fontSize: 14, color: Colors.black87),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildMapView() {
-    return const Mapping();
-  }
-
-  Widget _buildGreenView() {
-    return const FacilitiesListScreen();
-  }
-
-  Widget _buildAboutView() {
-    return const AboutScreen();
   }
 
   void _openFloorSelection(
@@ -614,48 +575,46 @@ class _HomescreenState extends State<Homescreen> {
     );
   }
 
+  // Modern block selector widget style
   Widget _buildDashboardItem({
     required IconData icon,
     required String title,
     required VoidCallback onTap,
   }) {
-    return GestureDetector(
+    const themeColor = Color.fromARGB(255, 66, 192, 70);
+
+    return InkWell(
       onTap: onTap,
+      borderRadius: BorderRadius.circular(20),
       child: Container(
-        width: 90,
-        height: 90,
+        padding: const EdgeInsets.symmetric(vertical: 20),
         decoration: BoxDecoration(
-          color: Colors.white.withValues(alpha: 0.4),
-          borderRadius: BorderRadius.circular(15),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: Colors.black.withOpacity(0.03)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.015),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              icon,
-              shadows: [
-                Shadow(
-                  color: const Color.fromARGB(
-                    255,
-                    134,
-                    203,
-                    65,
-                  ).withValues(alpha: 0.3),
-                  offset: Offset(2, 2),
-                  blurRadius: 3,
-                ),
-              ],
-              size: 40,
-              color: const Color.fromARGB(255, 66, 192, 70),
+            CircleAvatar(
+              radius: 24,
+              backgroundColor: themeColor.withOpacity(0.08),
+              child: Icon(icon, size: 24, color: themeColor),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 12),
             Text(
               title,
-              textAlign: TextAlign.center,
               style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 12,
-                color: Color.fromARGB(255, 0, 0, 0),
+                fontWeight: FontWeight.w700,
+                fontSize: 13,
+                color: Colors.black87,
               ),
             ),
           ],

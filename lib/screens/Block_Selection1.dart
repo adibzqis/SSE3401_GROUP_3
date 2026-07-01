@@ -11,15 +11,48 @@ class BlockSelection extends StatefulWidget {
 }
 
 class _BlockSelectionState extends State<BlockSelection> {
+  // Ultra-clean high class color codes locked down
+  final List<Map<String, dynamic>> blocks = [
+    {
+      'title': 'Block A',
+      'subtitle': 'Explore premium suites, main halls, and ground facilities.',
+      'floors': ['Ground Floor', 'Level 1', 'Level 2'],
+      'gradient': <Color>[Color(0xFFFFF0F0), Color(0xFFFFE4E4)],
+      'accentColor': Color(0xFFE57373),
+      'icon': Icons.corporate_fare_rounded,
+    },
+    {
+      'title': 'Block B',
+      'subtitle': 'Access executive workspaces, tech hubs, and server units.',
+      'floors': ['Ground Floor', 'Level 1', 'Level 2'],
+      'gradient': <Color>[Color(0xFFF0F4FF), Color(0xFFE2ECFF)],
+      'accentColor': Color(0xFF64B5F6),
+      'icon': Icons.domain_rounded,
+    },
+    {
+      'title': 'Block C',
+      'subtitle': 'Discover structural research zones and innovation labs.',
+      'floors': ['Ground Floor', 'Level 1', 'Level 2', 'Level 3'],
+      'gradient': <Color>[Color(0xFFF5FDF0), Color(0xFFE8F8DE)],
+      'accentColor': Color(0xFF81C784),
+      'icon': Icons.business_rounded,
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF8F9FA), 
       appBar: AppBar(
-        elevation: 1,
-        shadowColor: Color.fromARGB(255, 0, 0, 0),
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        elevation: 0,
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.transparent,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(1.0),
+          child: Container(color: Colors.black12, height: 1.0),
+        ),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.black87, size: 20),
           onPressed: () {
             if (widget.onBack != null) {
               widget.onBack!();
@@ -28,381 +61,173 @@ class _BlockSelectionState extends State<BlockSelection> {
             }
           },
         ),
-        title: Container(
-          alignment: AlignmentDirectional.topStart,
-          child: Text(
-            "Select Block",
-            textAlign: TextAlign.start,
-            style: TextStyle(fontWeight: FontWeight(900)),
+        title: const Text(
+          "Select Block",
+          style: TextStyle(
+            color: Colors.black87,
+            fontWeight: FontWeight.w800,
+            fontSize: 22,
+            letterSpacing: -0.5,
           ),
         ),
       ),
-      body: Stack(
-        clipBehavior: Clip.antiAlias,
-        children: [
-          SingleChildScrollView(
-            child: Container(
-              alignment: Alignment.center,
+      body: SafeArea(
+        child: Center(
+          child: Container(
+            constraints: const BoxConstraints(maxWidth: 600), 
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 10),
-                  Align(
-                    alignment: AlignmentGeometry.xy(-0.76, 1),
-                    child: Text(
-                      "Choose a block to explore",
-                      style: TextStyle(fontWeight: FontWeight(600)),
+                  const Text(
+                    "CAMPUS EXPLORER",
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black38,
+                      letterSpacing: 1.5,
                     ),
                   ),
+                  const SizedBox(height: 6),
+                  const Text(
+                    "Choose a block to explore",
+                    style: TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.black87,
+                      letterSpacing: -0.5,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    "Select one of the structural wings below to inspect available floors, rooms, and localized facility management metrics.",
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.black54,
+                      height: 1.4,
+                    ),
+                  ),
+                  const SizedBox(height: 30),
 
-                  Stack(
-                    //Block A
-                    alignment: AlignmentGeometry.center,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => FloorSelectionScreen(
-                                blockName: 'Block A',
-                                floors: ['Ground Floor', 'Level 1', 'Level 2'],
-                              ),
-                            ),
-                          );
-                        },
+                  Column(
+                    children: blocks.map((block) {
+                      final List<Color> cardGradient = block['gradient'] as List<Color>;
+                      final Color accent = block['accentColor'] as Color;
+
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 20.0),
                         child: Container(
-                          width: 500,
-                          height: 200,
-                          child: Card.outlined(
-                            margin: EdgeInsets.all(15),
-                            elevation: 3,
-                            shadowColor: Color.fromARGB(255, 0, 0, 0),
-                            color: Color.fromARGB(255, 255, 224, 224),
-                            child: Column(
-                              children: [
-                                SizedBox(height: 48),
-                                Align(
-                                  alignment: AlignmentGeometry.xy(-0.9, 1),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Align(
-                                        alignment: AlignmentGeometry.xy(
-                                          -0.9,
-                                          1,
-                                        ),
-                                        child: Text(
-                                          "Block A",
-                                          style: TextStyle(
-                                            fontSize: 30,
-                                            fontWeight: FontWeight(650),
-                                          ),
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment: AlignmentGeometry.xy(
-                                          -0.87,
-                                          1,
-                                        ),
-                                        child: Text(
-                                          "View Rooms, Floors, and \n Facilities",
-                                          textScaler: TextScaler.linear(1.2),
-                                          style: TextStyle(
-                                            fontSize: 10,
-                                            fontWeight: FontWeight(500),
-                                          ),
-                                          textWidthBasis: TextWidthBasis.parent,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: cardGradient,
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
                             ),
+                            borderRadius: BorderRadius.circular(24),
+                            boxShadow: [
+                              BoxShadow(
+                                color: accent.withOpacity(0.06),
+                                blurRadius: 24,
+                                offset: const Offset(0, 12),
+                              ),
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.02),
+                                blurRadius: 8,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
                           ),
-                        ),
-                      ),
-                      Positioned(
-                        top: 30,
-                        right: 30,
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => FloorSelectionScreen(
-                                  blockName: 'Block A',
-                                  floors: [
-                                    'Ground Floor',
-                                    'Level 1',
-                                    'Level 2',
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(24),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => FloorSelectionScreen(
+                                      blockName: block['title'] as String,
+                                      floors: List<String>.from(block['floors'] as List),
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(24.0),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 3,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            block['title'] as String,
+                                            style: const TextStyle(
+                                              fontSize: 28,
+                                              fontWeight: FontWeight.w900,
+                                              color: Colors.black87,
+                                              letterSpacing: -0.5,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 8),
+                                          Text(
+                                            block['subtitle'] as String,
+                                            style: const TextStyle(
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black54,
+                                              height: 1.4,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    const SizedBox(width: 16),
+                                    Expanded(
+                                      flex: 2,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            padding: const EdgeInsets.all(8),
+                                            decoration: BoxDecoration(
+                                              color: Colors.white.withOpacity(0.7),
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: Icon(
+                                              Icons.arrow_forward_rounded,
+                                              size: 18,
+                                              color: accent,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 20),
+                                          Icon(
+                                            block['icon'] as IconData,
+                                            size: 75,
+                                            color: accent.withOpacity(0.45),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
-                            );
-                          },
-                          child: Icon(Icons.next_plan, size: 30),
-                        ),
-                      ),
-                      Positioned(
-                        top: 105,
-                        right: 50,
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => FloorSelectionScreen(
-                                  blockName: 'Block A',
-                                  floors: [
-                                    'Ground Floor',
-                                    'Level 1',
-                                    'Level 2',
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                          child: Icon(
-                            Icons.business_rounded,
-                            size: 70,
-                            color: Color.fromARGB(255, 237, 99, 99),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  Stack(
-                    //Block B
-                    alignment: AlignmentGeometry.center,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => FloorSelectionScreen(
-                                blockName: 'Block B',
-                                floors: ['Ground Floor', 'Level 1', 'Level 2'],
-                              ),
-                            ),
-                          );
-                        },
-                        child: Container(
-                          width: 500,
-                          height: 200,
-                          child: Card.outlined(
-                            margin: EdgeInsets.all(15),
-                            elevation: 3,
-                            shadowColor: Color.fromARGB(255, 0, 0, 0),
-                            color: Color.fromARGB(255, 223, 232, 255),
-                            child: Column(
-                              children: [
-                                SizedBox(height: 48),
-                                Align(
-                                  alignment: AlignmentGeometry.xy(-0.9, 1),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Align(
-                                        alignment: AlignmentGeometry.xy(
-                                          -0.9,
-                                          1,
-                                        ),
-                                        child: Text(
-                                          "Block B",
-                                          style: TextStyle(
-                                            fontSize: 30,
-                                            fontWeight: FontWeight(650),
-                                          ),
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment: AlignmentGeometry.xy(
-                                          -0.87,
-                                          1,
-                                        ),
-                                        child: Text(
-                                          "View Rooms, Floors, and \n Facilities",
-                                          textScaler: TextScaler.linear(1.2),
-                                          style: TextStyle(
-                                            fontSize: 10,
-                                            fontWeight: FontWeight(500),
-                                          ),
-                                          textWidthBasis: TextWidthBasis.parent,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
                             ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        top: 30,
-                        right: 30,
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => FloorSelectionScreen(
-                                  blockName: 'Block B',
-                                  floors: ['Ground Floor', 'Level 2', 'Level 3'],
-                                ),
-                              ),
-                            );
-                          },
-                          child: Icon(Icons.next_plan, size: 30),
-                        ),
-                      ),
-                      Positioned(
-                        top: 105,
-                        right: 50,
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => FloorSelectionScreen(
-                                  blockName: 'Block B',
-                                  floors: ['Ground Floor', 'Level 1', 'Level 2'],
-                                ),
-                              ),
-                            );
-                          },
-                          child: Icon(
-                            Icons.business_rounded,
-                            size: 70,
-                            color: Color.fromARGB(255, 100, 139, 238),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  Stack(
-                    // Block C
-                    alignment: AlignmentGeometry.center,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => FloorSelectionScreen(
-                                blockName: 'Block C',
-                                floors: ['Ground Floor', 'Level 1', 'Level 2', 'Level 3'],
-                              ),
-                            ),
-                          );
-                        },
-                        child: Container(
-                          width: 500,
-                          height: 200,
-                          child: Card.outlined(
-                            margin: const EdgeInsets.all(15),
-                            elevation: 3,
-                            shadowColor: const Color.fromARGB(255, 0, 0, 0),
-                            color: const Color.fromARGB(224, 236, 255, 216),
-                            child: Column(
-                              children: [
-                                const SizedBox(height: 48),
-                                Align(
-                                  alignment: AlignmentGeometry.xy(-0.9, 1),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    children: const [
-                                      Align(
-                                        alignment: AlignmentGeometry.xy(
-                                          -0.9,
-                                          1,
-                                        ),
-                                        child: Text(
-                                          'Block C',
-                                          style: TextStyle(
-                                            fontSize: 30,
-                                            fontWeight: FontWeight(650),
-                                          ),
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment: AlignmentGeometry.xy(
-                                          -0.87,
-                                          1,
-                                        ),
-                                        child: Text(
-                                          'View Rooms, Floors, and \nFacilities',
-                                          style: TextStyle(
-                                            fontSize: 10,
-                                            fontWeight: FontWeight(500),
-                                          ),
-                                          textWidthBasis: TextWidthBasis.parent,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        top: 30,
-                        right: 30,
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => FloorSelectionScreen(
-                                  blockName: 'Block C',
-                                  floors: ['Ground Floor', 'Level 1', 'Level 2', 'Level 3'],
-                                ),
-                              ),
-                            );
-                          },
-                          child: const Icon(Icons.next_plan, size: 30),
-                        ),
-                      ),
-                      Positioned(
-                        top: 105,
-                        right: 50,
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => FloorSelectionScreen(
-                                  blockName: 'Block C',
-                                  floors: ['Ground Floor', 'Level 1', 'Level 2', 'Level 3'],
-                                ),
-                              ),
-                            );
-                          },
-                          child: const Icon(
-                            Icons.business_rounded,
-                            size: 70,
-                            color: Color.fromARGB(255, 174, 238, 105),
-                          ),
-                        ),
-                      ),
-                    ],
+                      );
+                    }).toList(),
                   ),
                 ],
               ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }
