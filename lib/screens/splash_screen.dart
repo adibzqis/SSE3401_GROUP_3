@@ -55,13 +55,14 @@ class _SplashScreenState extends State<SplashScreen>
                 width: 150,
                 height: 150,
                 decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 66, 192, 70),
                   shape: BoxShape.circle,
-                ),
-                child: const Icon(
-                  Icons.map_rounded,
-                  size: 80,
                   color: Colors.white,
+                ),
+                child: ClipOval(
+                  child: Image.asset(
+                    'Assets/logo.jpeg',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
