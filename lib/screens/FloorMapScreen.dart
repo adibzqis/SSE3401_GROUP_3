@@ -100,17 +100,7 @@ class FloorMapScreen extends StatelessWidget {
                             width: double.infinity,
                             height: double.infinity,
                           )
-                        : Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: const [
-                              Icon(Icons.map_outlined, size: 72, color: Colors.grey),
-                              SizedBox(height: 16),
-                              Text(
-                                'No map data available',
-                                style: TextStyle(fontSize: 18, color: Colors.grey),
-                              ),
-                            ],
-                          ),
+                        : const Icon(Icons.map_outlined, size: 72, color: Colors.grey),
                   ),
                 ),
               ),
@@ -129,18 +119,8 @@ class FloorMapScreen extends StatelessWidget {
                         width: double.infinity,
                         height: double.infinity,
                       )
-                    : Center(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: const [
-                            Icon(Icons.info_outline, size: 48, color: Colors.grey),
-                            SizedBox(height: 10),
-                            Text(
-                              'No guidance data available',
-                              style: TextStyle(fontSize: 16, color: Colors.grey),
-                            ),
-                          ],
-                        ),
+                    : const Center(
+                        child: Icon(Icons.info_outline, size: 48, color: Colors.grey),
                       ),
               ),
             ),

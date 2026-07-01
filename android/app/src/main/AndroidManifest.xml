@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="section_8_plus"
+        android:label="FSKTM Navigator"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <!-- TODO: Replace with your Google Maps Android API key -->

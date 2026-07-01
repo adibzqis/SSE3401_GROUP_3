@@ -57,7 +57,6 @@ class FloorSelectionScreen extends StatelessWidget {
                         floor,
                         style: const TextStyle(fontWeight: FontWeight.w600),
                       ),
-                      subtitle: const Text('No data available for this floor'),
                       trailing: const Icon(Icons.arrow_forward_ios),
                       onTap: () {
                         Navigator.push(
