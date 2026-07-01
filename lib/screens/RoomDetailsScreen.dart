@@ -18,14 +18,6 @@ class RoomDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String trailingLabel = '';
-    if (roomName.isNotEmpty) {
-      final lastChar = roomName.substring(roomName.length - 1);
-      if (RegExp(r'\d').hasMatch(lastChar)) {
-        trailingLabel = ' - Lab $lastChar';
-      }
-    }
-
     return Scaffold(
       backgroundColor: const Color(0xFFE8F8EC),
       appBar: AppBar(
@@ -42,14 +34,14 @@ class RoomDetailsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Clean Header Section
+              // Renders the specific room text title
               Text(
-                '$roomName$trailingLabel', 
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF0F172A), letterSpacing: -0.5),
+                roomName, 
+                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF0F172A), letterSpacing: -0.5),
               ),
               const SizedBox(height: 18),
               
-              // Dynamic Picture Container Card
+              // Image container displaying specific facility type chip inside
               Container(
                 height: 220,
                 width: double.infinity,
@@ -93,7 +85,7 @@ class RoomDetailsScreen extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               
-              // Structural Parameters Presentation Card
+              // Detail rows filled dynamically using passed parameters
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(24),
@@ -126,7 +118,6 @@ class RoomDetailsScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     
-                    // Grid Layout row showing facility metrics
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [

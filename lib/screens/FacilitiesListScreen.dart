@@ -146,8 +146,8 @@ class _FacilitiesListScreenState extends State<FacilitiesListScreen> with Ticker
   @override
   void initState() {
     super.initState();
-    _blockTabController = TabController(length: 3, vsync: this); // Extended length to 3 for Block C
-    _floorTabController = TabController(length: 4, vsync: this); // Extended length to 4 for Third Floor
+    _blockTabController = TabController(length: 3, vsync: this);
+    _floorTabController = TabController(length: 4, vsync: this);
 
     _blockTabController.addListener(() => setState(() {}));
     _floorTabController.addListener(() => setState(() {}));
@@ -188,7 +188,6 @@ class _FacilitiesListScreenState extends State<FacilitiesListScreen> with Ticker
           preferredSize: const Size.fromHeight(110.0),
           child: Column(
             children: [
-              // Segmented Block Selector Control Block
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 16),
                 padding: const EdgeInsets.all(4),
@@ -217,7 +216,6 @@ class _FacilitiesListScreenState extends State<FacilitiesListScreen> with Ticker
                 ),
               ),
               const SizedBox(height: 12),
-              // Floor Navigation Pills Tab Bar Layout
               TabBar(
                 controller: _floorTabController,
                 isScrollable: false,
@@ -271,6 +269,7 @@ class _FacilitiesListScreenState extends State<FacilitiesListScreen> with Ticker
                       child: InkWell(
                         borderRadius: BorderRadius.circular(20),
                         onTap: () {
+                          // Crucial: passing dynamic map information down to details page parameters
                           Navigator.push(
                             context,
                             MaterialPageRoute(
