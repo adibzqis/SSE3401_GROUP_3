@@ -4,89 +4,136 @@ class RoomDetailsScreen extends StatelessWidget {
   final String roomName;
   final String blockName;
   final String floorName;
+  final String roomType;
+  final String roomDesc;
 
   const RoomDetailsScreen({
     super.key,
     required this.roomName,
     required this.blockName,
     required this.floorName,
+    required this.roomType,
+    required this.roomDesc,
   });
 
   @override
   Widget build(BuildContext context) {
+    String trailingLabel = '';
+    if (roomName.isNotEmpty) {
+      final lastChar = roomName.substring(roomName.length - 1);
+      if (RegExp(r'\d').hasMatch(lastChar)) {
+        trailingLabel = ' - Lab $lastChar';
+      }
+    }
+
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 232, 248, 236),
+      backgroundColor: const Color(0xFFE8F8EC),
       appBar: AppBar(
-        title: Text(blockName, style: const TextStyle(color: Colors.black87, fontWeight: FontWeight.bold)),
+        title: Text(blockName, style: const TextStyle(color: Color(0xFF1E293B), fontWeight: FontWeight.bold, fontSize: 20)),
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black87),
+        iconTheme: const IconThemeData(color: Color(0xFF1E293B)),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('$roomName - Lab ${roomName.substring(roomName.length - 1)}', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black87)),
-              const SizedBox(height: 16),
+              // Clean Header Section
+              Text(
+                '$roomName$trailingLabel', 
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF0F172A), letterSpacing: -0.5),
+              ),
+              const SizedBox(height: 18),
               
-              // Room Picture Placeholder
+              // Dynamic Picture Container Card
               Container(
-                height: 200,
+                height: 220,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(24),
+                  borderRadius: BorderRadius.circular(28),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.05),
-                      blurRadius: 10,
-                      offset: const Offset(0, 4),
+                      color: Colors.black.withOpacity(0.04),
+                      blurRadius: 16,
+                      offset: const Offset(0, 8),
                     ),
                   ],
                 ),
-                child: const Center(
-                  child: Icon(Icons.image_outlined, size: 64, color: Colors.grey),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(28),
+                  child: Stack(
+                    children: [
+                      Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.image_outlined, size: 54, color: const Color(0xFF94A3B8).withOpacity(0.6)),
+                            const SizedBox(height: 8),
+                            const Text('No Image Available', style: TextStyle(color: Color(0xFF94A3B8), fontSize: 13, fontWeight: FontWeight.w500)),
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        top: 14,
+                        right: 14,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                          decoration: BoxDecoration(color: const Color(0xFF22C55E), borderRadius: BorderRadius.circular(100)),
+                          child: Text(roomType, style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold)),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(height: 24),
               
-              // Details Card
+              // Structural Parameters Presentation Card
               Container(
                 width: double.infinity,
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(24),
+                  borderRadius: BorderRadius.circular(28),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.05),
-                      blurRadius: 10,
-                      offset: const Offset(0, 4),
+                      color: Colors.black.withOpacity(0.04),
+                      blurRadius: 16,
+                      offset: const Offset(0, 8),
                     ),
                   ],
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buildDetailRow('Type', 'Computer Laboratory'),
-                    _buildDetailRow('Floor', floorName),
-                    _buildDetailRow('Block', blockName),
-                    _buildDetailRow('Desc', 'Main lab for software engineering courses.'),
-                    _buildDetailRow('Fun Fact', 'This was the first lab built on campus!'),
-                    const SizedBox(height: 16),
-                    const Text('Facilities Available:', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 12),
+                    _buildDetailRow(Icons.layers_rounded, 'Floor Level', floorName),
+                    _buildDetailRow(Icons.business_rounded, 'Building Location', blockName),
+                    _buildDetailRow(Icons.info_outline_rounded, 'Description', roomDesc),
                     
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 12),
+                      child: Divider(color: Color(0xFFF1F5F9), thickness: 1.5),
+                    ),
+                    
+                    const Text(
+                      'Facilities & Infrastructure', 
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF0F172A)),
+                    ),
+                    const SizedBox(height: 16),
+                    
+                    // Grid Layout row showing facility metrics
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        _buildFacilityIcon(Icons.wifi, 'Wi-Fi'),
-                        _buildFacilityIcon(Icons.computer, 'PCs'),
-                        _buildFacilityIcon(Icons.ac_unit, 'AC'),
-                        _buildFacilityIcon(Icons.camera_alt_rounded, 'Projector'),
+                        _buildFacilityIcon(Icons.wifi_rounded, 'Wi-Fi'),
+                        _buildFacilityIcon(Icons.computer_rounded, 'Workstations'),
+                        _buildFacilityIcon(Icons.ac_unit_rounded, 'A/C System'),
+                        _buildFacilityIcon(Icons.videocam_rounded, 'Projector'),
                       ],
                     ),
                   ],
@@ -99,18 +146,23 @@ class RoomDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildDetailRow(String label, String value) {
+  Widget _buildDetailRow(IconData symbol, String label, String value) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 12.0),
+      padding: const EdgeInsets.only(bottom: 16.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            width: 80,
-            child: Text('$label:', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black87)),
-          ),
+          Icon(symbol, size: 20, color: const Color(0xFF64748B)),
+          const SizedBox(width: 12),
           Expanded(
-            child: Text(value, style: TextStyle(fontSize: 16, color: Colors.grey[800])),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(label, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Color(0xFF94A3B8), letterSpacing: 0.5)),
+                const SizedBox(height: 4),
+                Text(value, style: const TextStyle(fontSize: 15, color: Color(0xFF334155), height: 1.4, fontWeight: FontWeight.w500)),
+              ],
+            ),
           ),
         ],
       ),
@@ -120,13 +172,21 @@ class RoomDetailsScreen extends StatelessWidget {
   Widget _buildFacilityIcon(IconData icon, String label) {
     return Column(
       children: [
-        CircleAvatar(
-          backgroundColor: const Color.fromARGB(255, 232, 248, 236),
-          radius: 24,
-          child: Icon(icon, color: const Color.fromARGB(255, 66, 192, 70)),
+        Container(
+          width: 54,
+          height: 54,
+          decoration: const BoxDecoration(
+            color: Color(0xFFE8F8EC),
+            shape: BoxShape.circle,
+          ),
+          child: Icon(icon, color: const Color(0xFF22C55E), size: 24),
         ),
         const SizedBox(height: 8),
-        Text(label, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
+        Text(
+          label, 
+          style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Color(0xFF64748B)),
+          textAlign: TextAlign.center,
+        ),
       ],
     );
   }
