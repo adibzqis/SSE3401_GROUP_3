@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'RoomDetailsScreen.dart'; // Ensure this matches your file name exactly
+import 'RoomDetailsScreen.dart';
 
 class FacilitiesListScreen extends StatefulWidget {
   const FacilitiesListScreen({super.key});
@@ -102,11 +102,8 @@ class _FacilitiesListScreenState extends State<FacilitiesListScreen> with Ticker
     _blockTabController = TabController(length: 2, vsync: this);
     _floorTabController = TabController(length: 3, vsync: this);
 
-    _floorTabController.addListener(() {
-      if (!_floorTabController.indexIsChanging) {
-        setState(() {});
-      }
-    });
+    _blockTabController.addListener(() => setState(() {}));
+    _floorTabController.addListener(() => setState(() {}));
   }
 
   @override
@@ -130,44 +127,53 @@ class _FacilitiesListScreenState extends State<FacilitiesListScreen> with Ticker
       appBar: AppBar(
         title: const Text(
           'FCSIT Facilities',
-          style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Color(0xFF1E293B), fontWeight: FontWeight.bold, fontSize: 22),
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black87),
+        iconTheme: const IconThemeData(color: Color(0xFF1E293B)),
         centerTitle: true,
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(100.0),
+          preferredSize: const Size.fromHeight(110.0),
           child: Column(
             children: [
+              // Segmented Block Selector Control Block
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.all(4),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(color: Colors.black.withOpacity(0.03), blurRadius: 10, offset: const Offset(0, 4)),
+                  ],
                 ),
                 child: TabBar(
                   controller: _blockTabController,
-                  indicatorColor: const Color(0xFF22C55E),
-                  labelColor: const Color(0xFF22C55E),
-                  unselectedLabelColor: Colors.grey,
+                  indicator: BoxDecoration(
+                    color: const Color(0xFF22C55E),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  labelColor: Colors.white,
+                  unselectedLabelColor: const Color(0xFF64748B),
+                  labelStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
                   indicatorSize: TabBarIndicatorSize.tab,
-                  onTap: (index) {
-                    setState(() {});
-                  },
                   tabs: const [
                     Tab(text: 'BLOCK A'),
                     Tab(text: 'BLOCK B'),
                   ],
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 12),
+              // Floor Navigation Pills Tab Bar Layout
               TabBar(
                 controller: _floorTabController,
                 isScrollable: false,
                 indicatorColor: const Color(0xFF22C55E),
+                indicatorWeight: 3,
                 labelColor: const Color(0xFF22C55E),
-                unselectedLabelColor: Colors.grey,
+                unselectedLabelColor: const Color(0xFF64748B),
+                labelStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                 tabs: const [
                   Tab(text: 'Ground'),
                   Tab(text: '1st Floor'),
@@ -178,117 +184,134 @@ class _FacilitiesListScreenState extends State<FacilitiesListScreen> with Ticker
           ),
         ),
       ),
-      body: currentFacilities.isEmpty
-          ? const Center(
-              child: Text(
-                'No facilities recorded under this wing section.',
-                style: TextStyle(color: Colors.grey),
-              ),
-            )
-          : ListView.builder(
-              padding: const EdgeInsets.all(16.0),
-              itemCount: currentFacilities.length,
-              itemBuilder: (context, index) {
-                final facility = currentFacilities[index];
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => RoomDetailsScreen(
-                          roomName: facility['name']!,
-                          blockName: selectedBlock,
-                          floorName: selectedFloor,
-                        ),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.only(bottom: 12),
-                    padding: const EdgeInsets.all(16),
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 250),
+        child: currentFacilities.isEmpty
+            ? const Center(
+                child: Text(
+                  'No facilities recorded under this wing section.',
+                  style: TextStyle(color: Color(0xFF64748B), fontSize: 15),
+                ),
+              )
+            : ListView.builder(
+                key: ValueKey('$selectedBlock-$selectedFloor'),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                itemCount: currentFacilities.length,
+                itemBuilder: (context, index) {
+                  final facility = currentFacilities[index];
+                  return Container(
+                    margin: const EdgeInsets.only(bottom: 14),
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.04),
-                          blurRadius: 8,
-                          offset: const Offset(0, 3),
+                          color: Colors.black.withOpacity(0.03),
+                          blurRadius: 14,
+                          offset: const Offset(0, 6),
                         ),
                       ],
                     ),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 48,
-                          height: 48,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFE8F8EC),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Icon(
-                            _getIconForType(facility['type']!),
-                            color: const Color(0xFF22C55E),
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                    child: Material(
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(20),
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(20),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => RoomDetailsScreen(
+                                roomName: facility['name']!,
+                                blockName: selectedBlock,
+                                floorName: selectedFloor,
+                                roomType: facility['type']!,
+                                roomDesc: facility['desc']!,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Row(
                             children: [
-                              Text(
-                                facility['name']!,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black87,
+                              Container(
+                                width: 52,
+                                height: 52,
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFFE8F8EC),
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                child: Icon(
+                                  _getIconForType(facility['type']!),
+                                  color: const Color(0xFF22C55E),
+                                  size: 24,
                                 ),
                               ),
-                              const SizedBox(height: 4),
-                              Text(
-                                facility['desc']!,
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  color: Colors.grey[600],
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      facility['name']!,
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF0F172A),
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 6),
+                                    Text(
+                                      facility['desc']!,
+                                      style: const TextStyle(
+                                        fontSize: 13,
+                                        color: Color(0xFF64748B),
+                                        height: 1.4,
+                                      ),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ],
                                 ),
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
                               ),
+                              const SizedBox(width: 8),
+                              const Icon(Icons.arrow_forward_ios_rounded, color: Color(0xFF94A3B8), size: 16),
                             ],
                           ),
                         ),
-                        const Icon(Icons.chevron_right, color: Colors.grey),
-                      ],
+                      ),
                     ),
-                  ),
-                );
-              },
-            ),
+                  );
+                },
+              ),
+      ),
     );
   }
 
   IconData _getIconForType(String type) {
     switch (type) {
       case 'Laboratory':
-        return Icons.computer;
+        return Icons.computer_rounded;
       case 'Office':
       case 'Office / Hub':
-        return Icons.badge_outlined;
+        return Icons.corporate_fare_rounded;
       case 'Prayer Room':
-        return Icons.brightness_3;
+        return Icons.dark_mode_rounded;
       case 'Hall / Auditorium':
-        return Icons.gavel_rounded;
+        return Icons.theater_comedy_rounded;
       case 'Meeting Room':
       case 'Seminar Room':
-        return Icons.groups;
+        return Icons.forum_rounded;
       case 'Storage':
-        return Icons.folder_open;
+        return Icons.inventory_2_rounded;
       case 'Utility':
-        return Icons.bolt;
+        return Icons.electrical_services_rounded;
       case 'Dining':
-        return Icons.restaurant;
+        return Icons.restaurant_rounded;
       default:
-        return Icons.meeting_room;
+        return Icons.room_preferences_rounded;
     }
   }
 }
