@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import '../widgets/bottom_nav_bar.dart';
+import 'Block_Selection1.dart';
+import 'FacilitiesListScreen.dart';
 import 'floor_selection_screen.dart';
-import 'Block_Selection.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -40,6 +41,23 @@ class _HomescreenState extends State<Homescreen> {
   }
 
   Widget _buildBody() {
+    switch (_currentIndex) {
+      case 0:
+        return _buildHomeScreen();
+      case 1:
+        return _buildBlockSelectionView();
+      case 2:
+        return _buildMapView();
+      case 3:
+        return _buildGreenView();
+      case 4:
+        return _buildAboutView();
+      default:
+        return _buildHomeScreen();
+    }
+  }
+
+  Widget _buildHomeScreen() {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
@@ -200,9 +218,18 @@ class _HomescreenState extends State<Homescreen> {
                               color: Color.fromARGB(255, 0, 0, 0),
                             ),
                           ),
-                          const SizedBox(height: 30),
+                          const SizedBox(height: 12),
                           Text(
-                            "Bla Bla",
+                            "Navigate FSKTM with Ease",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: const Color.fromARGB(255, 66, 192, 70),
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            "Explore our interactive campus maps, locate facilities, and find your way around FSKTM. Use the Quick Access section above to explore different blocks and floors.",
                             style: TextStyle(
                               fontSize: 13,
                               color: Colors.grey[700],
@@ -237,6 +264,34 @@ class _HomescreenState extends State<Homescreen> {
           ]),
         ),
       ],
+    );
+  }
+
+  Widget _buildBlockSelectionView() {
+    return const BlockSelection();
+  }
+
+  Widget _buildMapView() {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Floor Map'),
+        backgroundColor: const Color.fromARGB(255, 66, 192, 70),
+      ),
+      body: const Center(child: Text('Map View')),
+    );
+  }
+
+  Widget _buildGreenView() {
+    return const FacilitiesListScreen();
+  }
+
+  Widget _buildAboutView() {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('About'),
+        backgroundColor: const Color.fromARGB(255, 66, 192, 70),
+      ),
+      body: const Center(child: Text('About View')),
     );
   }
 
