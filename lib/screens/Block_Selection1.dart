@@ -16,7 +16,7 @@ class _BlockSelectionState extends State<BlockSelection> {
         elevation: 1,
         shadowColor: Color.fromARGB(255, 0, 0, 0),
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
-        leading: Icon(Icons.arrow_back),
+
         title: Container(
           alignment: AlignmentDirectional.topStart,
           child: Text(
@@ -78,8 +78,10 @@ class _BlockSelectionState extends State<BlockSelection> {
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Align(
-                                        alignment:
-                                            AlignmentGeometry.xy(-0.9, 1),
+                                        alignment: AlignmentGeometry.xy(
+                                          -0.9,
+                                          1,
+                                        ),
                                         child: Text(
                                           "Block A",
                                           style: TextStyle(
@@ -89,8 +91,10 @@ class _BlockSelectionState extends State<BlockSelection> {
                                         ),
                                       ),
                                       Align(
-                                        alignment:
-                                            AlignmentGeometry.xy(-0.87, 1),
+                                        alignment: AlignmentGeometry.xy(
+                                          -0.87,
+                                          1,
+                                        ),
                                         child: Text(
                                           "View Rooms, Floors, and \n Facilities",
                                           textScaler: TextScaler.linear(1.2),
@@ -98,8 +102,7 @@ class _BlockSelectionState extends State<BlockSelection> {
                                             fontSize: 10,
                                             fontWeight: FontWeight(500),
                                           ),
-                                          textWidthBasis:
-                                              TextWidthBasis.parent,
+                                          textWidthBasis: TextWidthBasis.parent,
                                         ),
                                       ),
                                     ],
@@ -123,7 +126,7 @@ class _BlockSelectionState extends State<BlockSelection> {
                                   floors: [
                                     'Ground Floor',
                                     'Level 1',
-                                    'Level 2'
+                                    'Level 2',
                                   ],
                                 ),
                               ),
@@ -145,7 +148,7 @@ class _BlockSelectionState extends State<BlockSelection> {
                                   floors: [
                                     'Ground Floor',
                                     'Level 1',
-                                    'Level 2'
+                                    'Level 2',
                                   ],
                                 ),
                               ),
@@ -196,8 +199,10 @@ class _BlockSelectionState extends State<BlockSelection> {
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Align(
-                                        alignment:
-                                            AlignmentGeometry.xy(-0.9, 1),
+                                        alignment: AlignmentGeometry.xy(
+                                          -0.9,
+                                          1,
+                                        ),
                                         child: Text(
                                           "Block B",
                                           style: TextStyle(
@@ -207,8 +212,10 @@ class _BlockSelectionState extends State<BlockSelection> {
                                         ),
                                       ),
                                       Align(
-                                        alignment:
-                                            AlignmentGeometry.xy(-0.87, 1),
+                                        alignment: AlignmentGeometry.xy(
+                                          -0.87,
+                                          1,
+                                        ),
                                         child: Text(
                                           "View Rooms, Floors, and \n Facilities",
                                           textScaler: TextScaler.linear(1.2),
@@ -216,8 +223,7 @@ class _BlockSelectionState extends State<BlockSelection> {
                                             fontSize: 10,
                                             fontWeight: FontWeight(500),
                                           ),
-                                          textWidthBasis:
-                                              TextWidthBasis.parent,
+                                          textWidthBasis: TextWidthBasis.parent,
                                         ),
                                       ),
                                     ],
@@ -306,8 +312,10 @@ class _BlockSelectionState extends State<BlockSelection> {
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Align(
-                                        alignment:
-                                            AlignmentGeometry.xy(-0.9, 1),
+                                        alignment: AlignmentGeometry.xy(
+                                          -0.9,
+                                          1,
+                                        ),
                                         child: Text(
                                           "Block C",
                                           style: TextStyle(
@@ -317,8 +325,10 @@ class _BlockSelectionState extends State<BlockSelection> {
                                         ),
                                       ),
                                       Align(
-                                        alignment:
-                                            AlignmentGeometry.xy(-0.87, 1),
+                                        alignment: AlignmentGeometry.xy(
+                                          -0.87,
+                                          1,
+                                        ),
                                         child: Text(
                                           "View Rooms, Floors, and \n Facilities",
                                           textScaler: TextScaler.linear(1.2),
@@ -326,8 +336,7 @@ class _BlockSelectionState extends State<BlockSelection> {
                                             fontSize: 10,
                                             fontWeight: FontWeight(500),
                                           ),
-                                          textWidthBasis:
-                                              TextWidthBasis.parent,
+                                          textWidthBasis: TextWidthBasis.parent,
                                         ),
                                       ),
                                     ],

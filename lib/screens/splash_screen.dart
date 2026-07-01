@@ -9,7 +9,8 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _animation;
 
@@ -54,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 width: 150,
                 height: 150,
                 decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 66, 192, 70), 
+                  color: Color.fromARGB(255, 66, 192, 70),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(

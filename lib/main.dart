@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:section_8_plus/screens/splash_screen.dart';
 
 void main() {
-  runApp(const MyApp());                                         
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),                 
+      home: SplashScreen(),
     );
   }
 }
