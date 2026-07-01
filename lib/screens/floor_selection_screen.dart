@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'RoomDetailsScreen.dart';
+import 'FloorMapScreen.dart';
 
 class FloorSelectionScreen extends StatelessWidget {
   final String blockName;
@@ -63,8 +63,7 @@ class FloorSelectionScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => RoomDetailsScreen(
-                              roomName: '${blockName.replaceAll('Block ', '')}${index + 101}',
+                            builder: (context) => FloorMapScreen(
                               blockName: blockName,
                               floorName: floor,
                             ),

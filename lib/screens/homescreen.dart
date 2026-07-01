@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/bottom_nav_bar.dart';
 import 'floor_selection_screen.dart';
-import 'Block_Selection1.dart';
-import 'FloorMapScreen.dart';
 import 'FacilitiesListScreen.dart';
 
 
@@ -37,7 +35,7 @@ class _HomescreenState extends State<Homescreen> {
       case 0:
         return _buildHomeScreen();
       case 1:
-        return _buildBlockSelectionView();
+        return _buildSearchView();
       case 2:
         return _buildMapView();
       case 3:
@@ -244,8 +242,79 @@ class _HomescreenState extends State<Homescreen> {
     );
   }
 
-  Widget _buildBlockSelectionView() {
-    return const BlockSelection();
+  Widget _buildSearchView() {
+    return Container(
+      color: const Color.fromARGB(255, 232, 248, 236),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Search',
+              style: TextStyle(
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+            const SizedBox(height: 16),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.05),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: const TextField(
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.search),
+                  hintText: 'Search rooms, blocks, or facilities',
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
+            const Text(
+              'Quick search tips',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+            ),
+            const SizedBox(height: 12),
+            _buildSearchTip('Search by room number or facility name.'),
+            _buildSearchTip('Use block names like Block A, B, or C.'),
+            _buildSearchTip('Tap the floor selection cards on the home page to open the floor map.'),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSearchTip(String text) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Padding(
+            padding: EdgeInsets.only(top: 4),
+            child: Icon(Icons.check_circle, size: 20, color: Color.fromARGB(255, 66, 192, 70)),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              text,
+              style: const TextStyle(fontSize: 14, color: Colors.black87),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _buildMapView() {

@@ -1,17 +1,24 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'FacilitiesListScreen.dart';
 
 class FloorMapScreen extends StatelessWidget {
-  const FloorMapScreen({super.key});
+  final String blockName;
+  final String floorName;
+
+  const FloorMapScreen({
+    super.key,
+    required this.blockName,
+    required this.floorName,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 232, 248, 236),
       appBar: AppBar(
-        title: const Text(
-          'Block A',
-          style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
+        title: Text(
+          '$blockName - $floorName',
+          style: const TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -29,11 +36,36 @@ class FloorMapScreen extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Expanded(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(24),
+                child: Container(
+                  color: Colors.white,
+                  child: Image.asset(
+                    'Assets/FSTKM.jpg',
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const FacilitiesListScreen(),
+                  ),
+                );
+              },
+              borderRadius: BorderRadius.circular(20),
               child: Container(
                 width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(24),
+                  borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withValues(alpha: 0.05),
@@ -42,42 +74,21 @@ class FloorMapScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: const Center(
-                  child: Text(
-                    'Map for user reference\n(Interactive map goes here)',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.grey, fontSize: 16),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 24),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const FacilitiesListScreen(),
+                child: Row(
+                  children: const [
+                    Icon(Icons.location_on, color: Color.fromARGB(255, 66, 192, 70), size: 28),
+                    SizedBox(width: 16),
+                    Expanded(
+                      child: Text(
+                        'Tap here to view facilities for this floor',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 66, 192, 70),
-                  padding: const EdgeInsets.symmetric(vertical: 18),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  elevation: 4,
-                ),
-                child: const Text(
-                  'View Rooms and Facilities',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
+                    Icon(Icons.chevron_right, color: Colors.grey),
+                  ],
                 ),
               ),
             ),
